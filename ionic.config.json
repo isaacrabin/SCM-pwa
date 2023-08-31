@@ -1,0 +1,7 @@
+{
+  "name": "JV",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
