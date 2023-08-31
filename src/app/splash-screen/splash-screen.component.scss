@@ -1,0 +1,46 @@
+:host {
+
+  --background-position: center;
+  --background-size: cover;
+  --background-repeat: no-repeat;
+
+  background-position: var(--background-position);
+  background-repeat: var(--background-repeat);
+  background-size: var(--background-size);
+
+  background: var(--linear-background);
+
+  z-index: 1000;
+  height: 100%;
+  opacity: 1;
+
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  transition-property: all;
+
+  &.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.125rem;
+    color: white;
+  }
+
+}
