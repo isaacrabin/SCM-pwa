@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { register } from 'swiper/element/bundle';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -20,5 +22,7 @@ export class AppComponent {
     { title: 'Spam', url: '/folder/spam', icon: 'warning' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() { }
+  constructor() {
+    register();
+  }
 }

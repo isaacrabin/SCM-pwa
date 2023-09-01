@@ -1,0 +1,34 @@
+<ion-content class="ion-no-padding">
+  <swiper-container #swiper pagination="true">
+    <swiper-slide
+      *ngFor="let slide of slides, let i = index">
+      <div
+        class="slide-info">
+        <ion-icon [src]="'./assets/custom-icons/' + slide.icon + '.svg' "></ion-icon>
+        <p class="slide-info__title ion-margin-bottom">{{slide.title}}</p>
+        <p class="slide-info__subtitle">
+          {{slide.subtitle}}
+        </p>
+
+        <ion-button routerLink="login" mode="ios"
+          class="slide-info__btn ion-margin-bottom"
+          fill="solid" expand="block" shape="round"> Open Your Account
+        </ion-button>
+        <ion-button *ngIf="i === 0; else skipBtn" routerLink="login"
+          class="skip "
+          fill="outline"
+          color="light" expand="block" shape="round">
+          Log In
+        </ion-button>
+
+        <ng-template #skipBtn>
+          <ion-button mode="ios" (click)="null" expand="block" fill="clear"
+            shape="round">
+            Skip
+          </ion-button>
+        </ng-template>
+
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

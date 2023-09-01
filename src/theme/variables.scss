@@ -77,6 +77,15 @@
 
   // custom
   --linear-background: linear-gradient(180deg, #F7931E 0%, #13A8BD 100%, #13A8BD 100%);
+
+  /* margins and radi */
+  --app-narrow-margin: 12px;
+  --app-fair-margin: 16px;
+  --app-broad-margin: 20px;
+
+  --app-narrow-radius: 4px;
+  --app-fair-radius: 8px;
+  --app-broad-radius: 16px;
 }
 
 @media (prefers-color-scheme: dark) {
