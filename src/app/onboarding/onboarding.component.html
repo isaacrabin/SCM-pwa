@@ -4,17 +4,18 @@
       *ngFor="let slide of slides, let i = index">
       <div
         class="slide-info">
-        <ion-icon [src]="'./assets/custom-icons/' + slide.icon + '.svg' "></ion-icon>
+        <ion-icon *ngIf="slide.icon"
+          [src]="'./assets/custom-icons/' + slide.icon + '.svg' "></ion-icon>
         <p class="slide-info__title ion-margin-bottom">{{slide.title}}</p>
         <p class="slide-info__subtitle">
           {{slide.subtitle}}
         </p>
 
-        <ion-button routerLink="login" mode="ios"
+        <ion-button routerLink="../login" mode="ios"
           class="slide-info__btn ion-margin-bottom"
           fill="solid" expand="block" shape="round"> Open Your Account
         </ion-button>
-        <ion-button *ngIf="i === 0; else skipBtn" routerLink="login"
+        <ion-button *ngIf="i === 0; else skipBtn" routerLink="../login"
           class="skip "
           fill="outline"
           color="light" expand="block" shape="round">
@@ -22,7 +23,8 @@
         </ion-button>
 
         <ng-template #skipBtn>
-          <ion-button mode="ios" (click)="null" expand="block" fill="clear"
+          <ion-button mode="ios" routerLink="../login" expand="block"
+            fill="clear"
             shape="round">
             Skip
           </ion-button>

@@ -52,6 +52,6 @@ export class SplashScreenComponent implements AfterContentChecked {
   ngAfterContentChecked() {
     setTimeout(() => {
       this.fadeOut = true
-    }, (this.duration * 3000));
+    }, (this.duration * 1000));
   }
 }

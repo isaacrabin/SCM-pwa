@@ -1,0 +1,40 @@
+<ion-content>
+
+  <div class="content ion-padding">
+    <div class="logo">
+
+      <img src="./assets/custom-icons/jv-logo.svg" alt="jv logo" srcset>
+      <p>JVApp</p>
+    </div>
+    <div class="welcome ion-margin-bottom">Welcome to JVApp</div>
+
+    <form>
+
+      <ion-label>Email/Phone Number</ion-label>
+      <ion-input mode="ios"
+        aria-label="Email/Phone Number"
+        placeholder="Email or Phone Number"
+        class="ion-margin-vertical"></ion-input>
+      <ion-label>Password</ion-label>
+      <ion-input mode="ios"
+        aria-label="Password"
+        placeholder="password"
+        type="password"
+        class="ion-margin-vertical"></ion-input>
+
+      <div class="extra">
+        <ion-checkbox mode="ios" labelPlacement="end">Remember Me</ion-checkbox>
+        <a>Forgot Password?</a>
+      </div>
+
+      <ion-button mode="ios" (click)="null" type="submit" expand="block"
+        fill="solid"
+        shape="round">
+        Login
+      </ion-button>
+
+      <p class="create-account">Don't have an account? <a> Create an account.
+        </a> </p>
+    </form>
+  </div>
+</ion-content>

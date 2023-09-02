@@ -13,6 +13,10 @@ export const routes: Routes = [
     // loadComponent: () => import('./onboarding/onboarding.component').then(m => m.OnboardingComponent)
   },
   {
+    path: 'login',
+    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
+  },
+  {
     path: 'folder/:id',
     loadComponent: () =>
       import('./folder/folder.page').then((m) => m.FolderPage),
