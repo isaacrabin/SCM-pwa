@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create An Account</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" color="secondary">
+        Close
+        <!-- <ion-icon slot="start" name="close-circle-outline"></ion-icon> -->
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <h3 class="title">What are your details?</h3>
+  <form [formGroup]="registerForm">
+
+    <div class="names">
+      <div class="first-name">
+        <ion-label>First Name</ion-label>
+        <ion-input
+          mode="md"
+          color="primary"
+          fill="outline"
+          shape="round"
+          aria-label="First Name"
+          placeholder="First Name"
+          class="ion-margin-bottom"></ion-input>
+      </div>
+      <div class="last-name">
+        <ion-label>Last Name</ion-label>
+        <ion-input
+          mode="md"
+          color="primary"
+          fill="outline"
+          shape="round"
+          aria-label="Last Name"
+          placeholder="Last Name"
+          class="ion-margin-bottom"></ion-input>
+      </div>
+    </div>
+
+    <ion-label>Date Of Birth</ion-label>
+    <ion-item class="ion-margin-bottom">
+      <ion-input
+        readonly
+        id="dob"
+        [value]="dateOfBirth | date :'dd MMMM, yyyy'"
+        mode="md"
+        color="primary"
+        fill="outline"
+        shape="round"
+        aria-label="Date of birth"
+        placeholder="Date of birth"></ion-input>
+      <ion-icon slot="end" name="calendar"></ion-icon>
+    </ion-item>
+    <ion-modal class="date-modal" trigger="dob"
+      [backdropDismiss]="false">
+      <ng-template>
+        <ion-datetime #calendar presentation="date"
+          formControlName="dateOfBirth"
+          (ionChange)="dateOfBirth = calendar.value"
+          [max]="dateOptions.max"
+          [value]="registerForm.get('dateOfBirth')?.value"
+          [showDefaultButtons]="true">
+        </ion-datetime>
+      </ng-template>
+    </ion-modal>
+    <ion-label>Gender</ion-label>
+    <ion-select
+      class="ion-margin-bottom"
+      interface="action-sheet"
+      aria-label="gender"
+      placeholder="Gender"
+      toggleIcon="chevron-down"
+      expandedIcon="chevron-up">
+      <ion-select-option value="male">Male</ion-select-option>
+      <ion-select-option value="female">Female</ion-select-option>
+    </ion-select>
+
+    <ion-label>Phone Number</ion-label>
+    <ion-item class="ion-margin-bottom" lines="none">
+      <ion-input
+        mode="md"
+        color="primary"
+        fill="outline"
+        shape="round"
+        type="tel"
+        aria-label="Phone Number"
+        placeholder="+27 12 213 123"></ion-input>
+      <ion-avatar slot="start">
+        <img src="./assets/images/SA-flag.png" />
+      </ion-avatar>
+      <!-- <ion-avatar slot="start" src="./assets/images/SA-flag.png">
+      </ion-avatar> -->
+    </ion-item>
+
+    <ion-label>Email</ion-label>
+    <ion-input
+      mode="md"
+      color="primary"
+      fill="outline"
+      shape="round"
+      aria-label="Email"
+      placeholder="Email"
+      class="ion-margin-bottom"></ion-input>
+
+    <ion-label>Password</ion-label>
+    <ion-input
+      mode="md"
+      color="primary"
+      fill="outline"
+      shape="round"
+      aria-label="Password"
+      placeholder="password"
+      type="password"
+      class="ion-margin-bottom"></ion-input>
+
+    <ion-button type="submit" (click)="null" expand="full" fill="solid"
+      shape="round">
+      Sign Up
+    </ion-button>
+
+  </form>
+
+  <div class="terms ion-text-center">
+    By creating an account, you have accepted/agreed to
+    <a href="#">TWAA’s Terms of service</a>
+    , including the , <a href="#">User Agreement &
+      Privacy Policy</a>,
+    <a href="#">Cookie Policy</a>
+    and also consent that you are female by gender.
+  </div>
+
+</ion-content>

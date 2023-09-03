@@ -1,0 +1,99 @@
+:host {
+  --input-height: 3rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  margin-bottom: 20px;
+}
+
+form {
+  ion-label {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 150%;
+  }
+
+  ion-item {
+    border: 1px solid var(--ion-color-step-300, #b3b3b3);
+    border-radius: 3.125rem;
+    height: var(--input-height);
+    min-height: 35px;
+
+    ion-input {
+      --border-style: none;
+    }
+
+    ion-avatar {
+      width: 25px;
+      height: 25px;
+    }
+
+    ion-icon[name=calendar] {
+      pointer-events: none;
+    }
+
+  }
+
+  ion-input {
+    --background: white;
+    --border-radius: 3.125rem;
+    --padding-start: 15px;
+    --border-style: solid;
+    color: #1E1E1E;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 150%;
+    height: var(--input-height);
+    min-height: 35px;
+  }
+
+  ion-select {
+    --padding-start: 15px;
+    --padding-end: 15px;
+    border-radius: 3.125rem !important;
+    border: 1px solid var(--ion-color-step-300, #b3b3b3);
+    height: var(--input-height);
+    min-height: 35px;
+
+    &::part(container) {
+      width: 100%;
+    }
+  }
+
+  ion-button[type=submit] {
+    color: white;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+
+    ::part(native) {
+      height: var(--height);
+    }
+  }
+}
+
+.date-modal {
+  --width: 290px;
+  --height: 382px;
+  --border-radius: 8px;
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.4) !important;
+
+  ion-datetime {
+    height: 382px;
+  }
+}
+
+.terms {
+  font-size: 12px;
+  padding: var(--app-narrow-margin);
+
+  a {
+    text-decoration: none;
+  }
+}
