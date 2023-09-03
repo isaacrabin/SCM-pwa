@@ -1,0 +1,38 @@
+<ion-content>
+  <div #content class="content ion-margin">
+
+    <ng-container
+      *ngIf="!isWrongOTP; else correctOtp">
+      <p class="title ion-margin-bottom">Entry your 4 digit code</p>
+      <ion-icon src="./assets/images/mail.svg" alt="mail"></ion-icon>
+      <code-input
+        #codeInput
+        [initialFocusField]="0"
+        (codeChanged)="onCodeChanged($event)"
+        (codeCompleted)="onCodeCompleted($event)">
+      </code-input>
+
+      <ion-text color="danger" *ngIf="isWrongOTP">
+        Wrong OTP❗
+      </ion-text>
+
+      <div class="resend ion-margin-vertical">Did not get a code? <ion-text
+          color="primary">Resend</ion-text>
+      </div>
+
+    </ng-container>
+    <ng-template #correctOtp>
+      <p class="title ion-margin-bottom">Your account has been created
+        successfully.</p>
+
+      <div class="icon">
+        <app-animated-checkmark></app-animated-checkmark>
+      </div>
+      <ion-button (click)="close()" expand="full" fill="solid" shape="round">
+        Proceed to Login
+      </ion-button>
+    </ng-template>
+
+  </div>
+
+</ion-content>

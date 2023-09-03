@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    this.createAccount();
+    // this.createAccount();
   }
 
   async createAccount() {

@@ -11,7 +11,7 @@
 </ion-header>
 <ion-content class="ion-padding">
   <h3 class="title">What are your details?</h3>
-  <form [formGroup]="registerForm">
+  <form [formGroup]="registerForm" (submit)="goToNextPage()">
 
     <div class="names">
       <div class="first-name">

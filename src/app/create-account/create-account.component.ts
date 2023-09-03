@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonNav, IonicModule, ModalController } from '@ionic/angular';
-import { TermsComponent } from '../terms/terms.component';
+import { OtpComponent } from '../otp/otp.component';
 
 @Component({
   standalone: true,
@@ -14,7 +14,7 @@ import { TermsComponent } from '../terms/terms.component';
 export class CreateAccountComponent implements OnInit {
 
   level = 0;
-  nextPage = TermsComponent;
+  nextPage = OtpComponent;
 
   dateOfBirth!: any;
 
@@ -40,10 +40,15 @@ export class CreateAccountComponent implements OnInit {
     this.registerForm = this._fb.group({
       dateOfBirth: ['2005-05-06T15:36:00', Validators.required],
     })
+    // this.goToNextPage();
   }
 
   async close() {
     await this.modalCtrl.dismiss();
+  }
+
+  goToNextPage() {
+    this.nav.push(this.nextPage, { level: this.level + 1 })
   }
 
 }

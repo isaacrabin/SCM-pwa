@@ -72,9 +72,9 @@ form {
     font-weight: 700;
     line-height: 150%;
 
-    ::part(native) {
-      height: var(--height);
-    }
+    // ::part(native) {
+    //   height: var(--height);
+    // }
   }
 }
 
