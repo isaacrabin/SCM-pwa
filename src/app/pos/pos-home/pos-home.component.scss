@@ -1,0 +1,44 @@
+ion-header {
+  box-shadow: none;
+
+  ion-toolbar {
+    --background: var(--ion-background-color);
+    --border-style: none;
+
+    ion-avatar {
+      padding: var(--app-narrow-margin);
+    }
+  }
+}
+
+.search {
+  border: 1px solid #c2c2c2;
+  border-radius: 25px;
+
+}
+
+ion-list-header {
+  border-bottom: 1px solid #c2c2c2;
+  padding-inline-start: 0px;
+}
+
+ion-grid {
+  --ion-grid-padding: 0px;
+
+  ion-row {
+    ion-col {
+      // --ion-grid-column-padding: 10px;
+    }
+  }
+}
+
+ion-card {
+  height: 280px;
+  // max-width: 250px;
+
+  img {
+    height: 60%;
+    width: 100%;
+    object-fit: cover;
+  }
+}

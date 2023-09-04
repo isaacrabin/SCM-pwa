@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Point of Sale</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="null" color="dark">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-avatar slot="end">
+      <img src="./assets/images/woman-avatar.png" />
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item lines="none" class="search" mode="ios">
+    <ion-input type="text" placeholder="Search item"></ion-input>
+    <ion-icon size="small" slot="start" name="search-outline"></ion-icon>
+    <ion-button slot="end" (click)="null" fill="clear" color="medium">
+      <ion-icon size="small" slot="icon-only" name="filter-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <ion-list-header>
+    <ion-label>All Products</ion-label>
+    <ion-buttons>
+      <ion-button color="dark" (click)="null" expand="block" fill="clear"
+        shape="round">
+        <ion-icon slot="icon-only" size="small"
+          src="./assets/custom-icons/barcode.svg"></ion-icon>
+      </ion-button>
+      <ion-button color="dark" (click)="null" expand="block" fill="clear"
+        shape="round">
+        <ion-icon slot="icon-only" size="small" name="grid-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-list-header>
+
+  <ion-grid fixed class>
+    <ion-row>
+      <!-- *ngFor="let i of [].constructor(6)" -->
+      <ng-container *ngFor="let i of [].constructor(3)">
+        <ion-col size="6" size-md="4">
+          <ion-card class="ion-no-margin">
+            <img alt="Silhouette of mountains"
+              src="./assets/images/yellow-phone.jpeg" />
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" size-md="4">
+          <ion-card class="ion-no-margin">
+            <img alt="Silhouette of mountains"
+              src="./assets/images/smart-phone.jpeg" />
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" size-md="4">
+          <ion-card class="ion-no-margin">
+            <img alt="Silhouette of mountains"
+              src="./assets/images/watch.jpeg" />
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" size-md="4">
+          <ion-card class="ion-no-margin">
+            <img alt="Silhouette of mountains"
+              src="./assets/images/macbook.jpeg" />
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ng-container>
+
+      <!-- <ion-col size="6" size-md="4">1</ion-col>
+      <ion-col size="6" size-md="4">1</ion-col>
+      <ion-col size="6" size-md="4">1</ion-col>
+      <ion-col size="6" size-md="4">1</ion-col>
+      <ion-col size="6" size-md="4">1</ion-col> -->
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
