@@ -15,6 +15,7 @@ export class OtpComponent implements OnInit, AfterViewInit {
 
   otp = 1894;
   isWrongOTP = false;
+  matched = false;
 
   @ViewChild('codeInput') codeInput !: CodeInputComponent;
   @ViewChild('content', { read: ElementRef }) content!: ElementRef<HTMLDivElement>;
@@ -49,7 +50,9 @@ export class OtpComponent implements OnInit, AfterViewInit {
   onCodeCompleted(event: string) {
     console.log('completed: ', event);
     if (Number(event) === this.otp) {
-      this.animation.play();
+
+      this.matched = true
+
       return
       // this._router.navigate(['verify']);
     }

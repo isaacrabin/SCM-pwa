@@ -2,7 +2,7 @@
   <div #content class="content ion-margin">
 
     <ng-container
-      *ngIf="!isWrongOTP; else correctOtp">
+      *ngIf="!matched ; else correctOtp">
       <p class="title ion-margin-bottom">Entry your 4 digit code</p>
       <ion-icon src="./assets/images/mail.svg" alt="mail"></ion-icon>
       <code-input
