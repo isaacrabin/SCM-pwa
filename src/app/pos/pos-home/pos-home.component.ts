@@ -13,6 +13,13 @@ export class PosHomeComponent implements OnInit {
 
   constructor() { }
 
+  images = [
+    'yellow-phone',
+    'smart-phone',
+    'watch',
+    'macbook',
+  ]
+
   ngOnInit() {
   }
 

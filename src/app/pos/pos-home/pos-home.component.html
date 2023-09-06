@@ -1,11 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Point of Sale</ion-title>
+    <!-- <ion-title>Point of Sale</ion-title> -->
     <ion-buttons slot="start">
       <ion-button (click)="null" color="dark">
         <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-item lines="none" class="search" mode="ios">
+      <ion-input type="text" placeholder="Search item"></ion-input>
+      <ion-icon size="small" slot="start" name="search-outline"></ion-icon>
+      <ion-button slot="end" (click)="null" fill="clear" color="medium">
+        <ion-icon size="small" slot="icon-only" name="filter-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
     <ion-avatar slot="end">
       <img src="./assets/images/woman-avatar.png" />
     </ion-avatar>
@@ -13,14 +20,6 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
-  <ion-item lines="none" class="search" mode="ios">
-    <ion-input type="text" placeholder="Search item"></ion-input>
-    <ion-icon size="small" slot="start" name="search-outline"></ion-icon>
-    <ion-button slot="end" (click)="null" fill="clear" color="medium">
-      <ion-icon size="small" slot="icon-only" name="filter-outline"></ion-icon>
-    </ion-button>
-  </ion-item>
 
   <ion-list-header>
     <ion-label>All Products</ion-label>
@@ -41,44 +40,32 @@
     <ion-row>
       <!-- *ngFor="let i of [].constructor(6)" -->
       <ng-container *ngFor="let i of [].constructor(3)">
-        <ion-col size="6" size-md="4">
-          <ion-card class="ion-no-margin">
-            <img alt="Silhouette of mountains"
-              src="./assets/images/yellow-phone.jpeg" />
-            <ion-card-header>
-              <ion-card-title>Card Title</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size="6" size-md="4">
-          <ion-card class="ion-no-margin">
-            <img alt="Silhouette of mountains"
-              src="./assets/images/smart-phone.jpeg" />
-            <ion-card-header>
-              <ion-card-title>Card Title</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size="6" size-md="4">
-          <ion-card class="ion-no-margin">
-            <img alt="Silhouette of mountains"
-              src="./assets/images/watch.jpeg" />
-            <ion-card-header>
-              <ion-card-title>Card Title</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size="6" size-md="4">
-          <ion-card class="ion-no-margin">
-            <img alt="Silhouette of mountains"
-              src="./assets/images/macbook.jpeg" />
-            <ion-card-header>
-              <ion-card-title>Card Title</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            </ion-card-header>
+        <ion-col *ngFor="let image of images" size="6" size-md="4">
+          <ion-card class="card ion-no-margin">
+            <div class="image-container">
+              <img alt="Silhouette of mountains"
+                [src]="'./assets/images/'+ image + '.jpeg'" />
+            </div>
+            <div class="card-content">
+              <div class="buttons">
+                <ion-button size="small" fill="clear" (click)="null">
+                  <ion-icon slot="icon-only" name="cart"></ion-icon>
+                </ion-button>
+              </div>
+              <div class="price">
+                <p class="whole"> 89</p>
+                <div class="cent-denomination">
+                  <div class="cents">.00</div>
+                  <div class="denomination">ZAR</div>
+                </div>
+              </div>
+              <p class="product-name">
+                Pure Olive Oil and some reaally long text that is
+                not relevant, it just for testiing the clamping of text
+              </p>
+            </div>
+            <!-- <div class="info">
+            </div> -->
           </ion-card>
         </ion-col>
       </ng-container>
