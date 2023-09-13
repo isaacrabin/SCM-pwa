@@ -102,3 +102,13 @@ h6 {
   overflow-wrap: break-word;
   margin: 0;
 }
+
+
+// global styles
+.search {
+  // border: 1px solid #c2c2c2;
+  --background: var(--ion-color-light);
+  border-radius: 25px;
+  // max-width: 400px;
+  // margin: 0 auto;
+}

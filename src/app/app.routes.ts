@@ -7,6 +7,12 @@ const posRoutes: Routes = [
     loadComponent: () => import('./pos/pos-home/pos-home.component').then(m => m.PosHomeComponent)
   }
 ]
+const dashboardRoutes: Routes = [
+  {
+    path: '',
+    loadComponent: () => import('./inventory-products/inventory-products.component').then(m => m.InventoryProductsComponent)
+  }
+]
 
 export const routes: Routes = [
   {
@@ -35,9 +41,10 @@ export const routes: Routes = [
     loadChildren: () => import('./app.routes').then(m => posRoutes),
     title: 'Home'
   },
-  // {
-  //   path: 'dashboard',
-  //   loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
-  // }
+  {
+    path: 'dashboard',
+    title: 'Inventory Products',
+    loadChildren: () => import('./app.routes').then(m => dashboardRoutes),
+  }
 ];
 

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Products</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="null" color="dark">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-avatar slot="end">
+      <img src="./assets/images/woman-avatar.png" />
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none" class="search ion-margin" mode="ios">
+    <ion-input type="text" placeholder="Search item"></ion-input>
+    <ion-icon size="small" slot="start" name="search-outline"></ion-icon>
+    <ion-button slot="end" (click)="null" fill="clear" color="medium">
+      <ion-icon size="small" slot="icon-only" name="filter-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <ion-list lines="full">
+
+    <ng-container *ngFor="let i of [].constructor(3)">
+
+      <ion-item class="inventory-item" *ngFor="let image of images">
+        <ion-thumbnail slot="start">
+          <img [alt]="image"
+            [src]="'./assets/images/'+ image + '.jpeg'" />
+        </ion-thumbnail>
+        <ion-label> <h3>Iphone 14</h3> <p>ZAR. 16000</p> </ion-label>
+        <div class="more" slot="end">
+          <!-- <ion-button (click)="null" color="secondary" expand="block"
+            fill="clear"
+            shape="round">
+          </ion-button> -->
+          <p class="inventory">50</p>
+          <ion-button (click)="null" fill="none" color="dark">
+            <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-item>
+    </ng-container>
+
+  </ion-list>
+
+  <ion-fab slot="fixed" horizontal="end" vertical="bottom">
+    <ion-fab-button>
+      <ion-icon name="add" color="light"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
