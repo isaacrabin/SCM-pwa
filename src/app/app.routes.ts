@@ -16,25 +16,28 @@ export const routes: Routes = [
   },
   {
     path: 'onboard',
-    component: OnboardingComponent
+    component: OnboardingComponent,
+    title: 'Onboard'
     // loadComponent: () => import('./onboarding/onboarding.component').then(m => m.OnboardingComponent)
   },
   {
     path: 'login',
-    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
+    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent),
+    title: 'login'
   },
-  {
-    path: 'folder/:id',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
-  },
+  // {
+  //   path: 'folder/:id',
+  //   loadComponent: () =>
+  //     import('./folder/folder.page').then((m) => m.FolderPage),
+  // },
   {
     path: 'pos',
-    loadChildren: () => import('./app.routes').then(m => posRoutes)
+    loadChildren: () => import('./app.routes').then(m => posRoutes),
+    title: 'Home'
   },
-  {
-    path: 'dashboard',
-    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
-  }
+  // {
+  //   path: 'dashboard',
+  //   loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
+  // }
 ];
 

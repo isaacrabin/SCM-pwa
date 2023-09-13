@@ -1,6 +1,8 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { BarcodeScannerComponent } from 'src/app/barcode-scanner/barcode-scanner.component';
+
 
 @Component({
   standalone: true,
@@ -11,7 +13,7 @@ import { IonicModule } from '@ionic/angular';
 })
 export class PosHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
   images = [
     'yellow-phone',
@@ -21,6 +23,14 @@ export class PosHomeComponent implements OnInit {
   ]
 
   ngOnInit() {
+  }
+
+  async scanCode() {
+    const modal = await this.modalCtrl.create({
+      component: BarcodeScannerComponent,
+    })
+
+    return modal.present();
   }
 
 }

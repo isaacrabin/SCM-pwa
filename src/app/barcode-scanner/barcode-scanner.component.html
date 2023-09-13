@@ -1,0 +1,9 @@
+<ion-content>
+  opened
+  <barcode-scanner-livestream
+    (valueChanges)="onValueChanges($event)"
+    (started)="(onStarted)"></barcode-scanner-livestream>
+  <div [hidden]="!barcodeValue">
+    {{ barcodeValue }}
+  </div>
+</ion-content>
