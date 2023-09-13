@@ -11,7 +11,7 @@ const posRoutes: Routes = [
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'onboard',
     pathMatch: 'full',
   },
   {
