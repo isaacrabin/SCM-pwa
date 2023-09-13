@@ -11,6 +11,8 @@ import { IonicModule } from '@ionic/angular';
 })
 export class InventoryProductsComponent implements OnInit {
 
+  selectedItem!: string;
+
   images = [
     'yellow-phone',
     'smart-phone',
@@ -20,6 +22,17 @@ export class InventoryProductsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  isModalOpen: boolean = false;
+
+  openModal(productName: string) {
+    this.selectedItem = productName.split('-').join(' ');
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 
 }

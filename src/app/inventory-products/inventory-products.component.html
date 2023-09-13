@@ -30,14 +30,14 @@
           <img [alt]="image"
             [src]="'./assets/images/'+ image + '.jpeg'" />
         </ion-thumbnail>
-        <ion-label> <h3>Iphone 14</h3> <p>ZAR. 16000</p> </ion-label>
+        <ion-label> <h3>{{image}}</h3> <p>ZAR. 16000</p> </ion-label>
         <div class="more" slot="end">
           <!-- <ion-button (click)="null" color="secondary" expand="block"
             fill="clear"
             shape="round">
           </ion-button> -->
           <p class="inventory">50</p>
-          <ion-button (click)="null" fill="none" color="dark">
+          <ion-button (click)="openModal(image)" fill="none" color="dark">
             <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
           </ion-button>
         </div>
@@ -45,6 +45,75 @@
     </ng-container>
 
   </ion-list>
+
+  <ion-modal #modal [isOpen]="isModalOpen" (didDismiss)="closeModal()"
+    class="auto-height bottom">
+    <ng-template>
+      <div class="inner-content">
+        <ion-list lines="full">
+
+          <ion-list-header>
+            <ion-label>{{selectedItem}}</ion-label>
+            <ion-button (click)="closeModal()">
+              <ion-icon slot="icon-only" name="close" color="dark"></ion-icon>
+            </ion-button>
+          </ion-list-header>
+
+          <ion-item>
+            <ion-label>
+              <ion-text color="primary">
+                <h3>
+                  Update Product Information
+                </h3>
+              </ion-text>
+              <p><sub>All Changes are effective immediately</sub></p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>
+              <ion-text color="primary">
+                <h3>
+                  Inventory Management
+                </h3>
+              </ion-text>
+              <p><sub>
+                  Manually adjust your current inventory and stock.
+                </sub></p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>
+              <ion-text color="primary">
+                <h3>
+                  Purchase History </h3>
+              </ion-text>
+              <p><sub>Check out the product purchase history, payments and dues.</sub></p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>
+              <ion-text color="primary">
+                <h3>
+                  Report </h3>
+              </ion-text>
+              <p><sub>Product sales and purchase reports.</sub></p>
+            </ion-label>
+          </ion-item>
+
+        </ion-list>
+
+        <ion-button class="ion-margin-horizontal ion-margin-bottom"
+          (click)="null" expand="block"
+          fill="solid" shape="round"
+          color="danger">
+          Delete
+        </ion-button>
+      </div>
+    </ng-template>
+  </ion-modal>
 
   <ion-fab slot="fixed" horizontal="end" vertical="bottom">
     <ion-fab-button>

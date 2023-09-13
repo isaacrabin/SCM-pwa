@@ -1,0 +1,13 @@
+ion-modal>.ion-page,
+ion-modal.auto-height {
+  --height: auto;
+
+  &.bottom {
+    align-items: flex-end;
+  }
+
+  .inner-content {
+    max-height: 80vh;
+    overflow: auto;
+  }
+}
