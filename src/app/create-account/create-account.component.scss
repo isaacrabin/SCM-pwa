@@ -40,11 +40,11 @@ form {
   }
 
   ion-input {
-    --background: white;
+    --background: intial;
     --border-radius: 3.125rem;
     --padding-start: 15px;
     --border-style: solid;
-    color: #1E1E1E;
+    color: var(--color);
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 150%;

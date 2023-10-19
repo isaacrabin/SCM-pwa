@@ -1,6 +1,8 @@
 import { NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { Component, OnInit, inject } from '@angular/core';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { AddProductOneComponent } from '../add-product-one/add-product-one.component';
+import { BaseModalComponent } from '../base-modal/base-modal.component';
 
 @Component({
   standalone: true,
@@ -11,7 +13,10 @@ import { IonicModule } from '@ionic/angular';
 })
 export class InventoryProductsComponent implements OnInit {
 
+  modalController = inject(ModalController)
+
   selectedItem!: string;
+
 
   images = [
     'yellow-phone',
@@ -35,4 +40,13 @@ export class InventoryProductsComponent implements OnInit {
     this.isModalOpen = false;
   }
 
+  async addItem() {
+    const modal = this.modalController.create({
+      component: BaseModalComponent,
+      componentProps: {
+        rootPage: AddProductOneComponent
+      }
+    });
+    return (await modal).present();
+  }
 }

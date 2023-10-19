@@ -6,7 +6,7 @@
         <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-avatar slot="end">
+    <ion-avatar mode="ios" slot="end">
       <img src="./assets/images/woman-avatar.png" />
     </ion-avatar>
   </ion-toolbar>
@@ -115,10 +115,9 @@
     </ng-template>
   </ion-modal>
 
-  <ion-fab slot="fixed" horizontal="end" vertical="bottom">
+  <ion-fab (click)="addItem()" slot="fixed" horizontal="end" vertical="bottom">
     <ion-fab-button>
       <ion-icon name="add" color="light"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>

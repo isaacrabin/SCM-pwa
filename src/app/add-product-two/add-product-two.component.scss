@@ -1,0 +1,19 @@
+ion-list-header {
+  padding-inline-start: 0;
+
+  ion-label {
+    margin-top: 0;
+  }
+}
+
+ion-textarea {
+  --padding-start: 32px;
+  --padding-end: 32px;
+  border: 1px solid var(--ion-color-step-300, #b3b3b3);
+  border-radius: calc(3.125rem/2);
+
+}
+
+ion-button[type=submit] {
+  color: white;
+}

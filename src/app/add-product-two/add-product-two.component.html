@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Product</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-list-header mode="ios" lines="inset">
+      <ion-label>Pricing Details</ion-label>
+    </ion-list-header>
+
+    <ion-label>Regular Price</ion-label>
+    <ion-input
+      mode="md"
+      color="primary"
+      fill="outline"
+      shape="round"
+      aria-label="Regular Price"
+      placeholder="Regular Price"
+      class="ion-margin-bottom"></ion-input>
+
+    <ion-label>Sale Price</ion-label>
+    <ion-input
+      mode="md"
+      color="primary"
+      fill="outline"
+      shape="round"
+      aria-label="Sale Price"
+      placeholder="Sale Price"
+      class="ion-margin-bottom"></ion-input>
+
+    <ion-list-header mode="ios" lines="inset">
+      <ion-label>Invetory Details</ion-label>
+    </ion-list-header>
+
+    <ion-label>SKU</ion-label>
+    <ion-input
+      mode="md"
+      color="primary"
+      fill="outline"
+      shape="round"
+      aria-label="SKU"
+      placeholder="SKU"
+      class="ion-margin-bottom"></ion-input>
+
+    <ion-label>Stock Number</ion-label>
+    <ion-item lines="none">
+      <ion-checkbox slot="start"
+        aria-label="Track stock quantity for this product"></ion-checkbox>
+      <ion-label>Track stock quantity for this product</ion-label>
+    </ion-item>
+
+    <ion-label>Stock Number</ion-label>
+    <ion-input
+      mode="md"
+      color="primary"
+      fill="outline"
+      shape="round"
+      aria-label="Stock Number"
+      placeholder="Stock Number"
+      class="ion-margin-bottom"></ion-input>
+
+    <ion-label>Product Attributes</ion-label>
+    <ion-button mode="ios" (click)="null" expand="block" fill="outline"
+      shape="round">
+      Add New Attribute
+    </ion-button>
+
+    <ion-input
+      type="number"
+      mode="md"
+      color="primary"
+      fill="outline"
+      shape="round"
+      aria-label="Stock Number"
+      placeholder="Stock Number"
+      class="ion-margin-vertical"></ion-input>
+
+    <ion-textarea class="ion-margin-bottom"
+      placeholder="Type a detailed description of the product"
+      [autoGrow]="true">
+    </ion-textarea>
+
+    <ion-button type="submit" mode="ios" (click)="null" expand="block"
+      fill="solid"
+      shape="round">
+      Save Product
+    </ion-button>
+  </ion-list>
+
+</ion-content>

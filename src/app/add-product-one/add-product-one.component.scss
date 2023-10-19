@@ -1,0 +1,41 @@
+ion-toolbar {
+  --border-style: none;
+  --background: inherit;
+}
+
+form {
+
+
+  ion-textarea {
+    --padding-start: 32px;
+    --padding-end: 32px;
+    border: 1px solid var(--ion-color-step-300, #b3b3b3);
+    border-radius: calc(3.125rem/2);
+
+  }
+
+  ion-item.categories {
+    border: none !important;
+    --background: none
+  }
+
+  .product-image-container {
+    border: 1px solid var(--ion-color-step-300, #b3b3b3);
+    text-align: center;
+    padding: var(--app-narrow-margin);
+    border-radius: 1.5rem;
+
+    img {
+      margin: 0 auto;
+    }
+
+    p {
+      color: var(--ion-color-step-300, #b3b3b3);
+      font-size: 0.7rem;
+    }
+  }
+
+  ion-button {
+    color: white;
+  }
+}
