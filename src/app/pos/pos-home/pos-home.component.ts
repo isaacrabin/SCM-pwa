@@ -1,7 +1,8 @@
-import { NgFor } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { BarcodeScannerComponent } from 'src/app/barcode-scanner/barcode-scanner.component';
+import { ItemsService } from 'src/app/services/items.service';
 
 
 @Component({
@@ -9,11 +10,16 @@ import { BarcodeScannerComponent } from 'src/app/barcode-scanner/barcode-scanner
   selector: 'app-pos-home',
   templateUrl: './pos-home.component.html',
   styleUrls: ['./pos-home.component.scss'],
-  imports: [IonicModule, NgFor]
+  imports: [IonicModule, NgFor, AsyncPipe, NgIf]
 })
 export class PosHomeComponent implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  items$ = this.getItemsService.fetchAllItems();
+
+  constructor(
+    private modalCtrl: ModalController,
+    private getItemsService: ItemsService
+  ) { }
 
   images = [
     'yellow-phone',

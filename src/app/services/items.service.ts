@@ -13,7 +13,7 @@ export class ItemsService {
   constructor() { }
 
   fetchAllItems() {
-    return this.http.get<GetItemsResults>(environment.BASE_URL + 'viewitems')
+    return this.http.get<GetItemsResults[]>(environment.BASE_URL + 'viewitems')
   }
 
 }
