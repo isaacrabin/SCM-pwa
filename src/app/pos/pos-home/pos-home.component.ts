@@ -1,6 +1,7 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { map } from 'rxjs';
 import { BarcodeScannerComponent } from 'src/app/barcode-scanner/barcode-scanner.component';
 import { ItemsService } from 'src/app/services/items.service';
 
@@ -14,7 +15,28 @@ import { ItemsService } from 'src/app/services/items.service';
 })
 export class PosHomeComponent implements OnInit {
 
-  items$ = this.getItemsService.fetchAllItems();
+  items$ = this.getItemsService.fetchAllItems()
+    .pipe(
+      map(items => {
+        items.map(item => {
+          const rate = item.standard_rate.toString();
+          // Ensure item['price'] is an object
+          if (!item['price']) {
+            item['price'] = {};
+          }
+          if (rate.includes('.')) {
+            const split = rate.split('.');
+            item['price']['whole'] = Number(split[0]);
+            item['price']['cents'] = Number(split[1]);
+          } else {
+            item['price']['whole'] = item.standard_rate;
+            item['price']['cents'] = 0o0;
+          }
+          return item
+        })
+        return items
+      })
+    )
 
   constructor(
     private modalCtrl: ModalController,

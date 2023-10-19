@@ -72,6 +72,10 @@ export interface GetItemsResults {
   supplier_items: any[];
   reorder_levels: any[];
   item_defaults: ItemDefault[];
+  price: {
+    whole?: number,
+    cents?: number
+  }
 }
 
 export enum Type {

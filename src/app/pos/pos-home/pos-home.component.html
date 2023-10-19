@@ -83,9 +83,10 @@
                 </ion-button>
               </div>
               <div class="price">
-                <p class="whole"> {{item.standard_rate}}</p>
+                <p class="whole"> {{item.price.whole}}</p>
                 <div class="cent-denomination">
-                  <div class="cents">.00</div>
+                  <div class="cents">.{{item.price.cents === 0 ? '00' :
+                    item.price.cents}}</div>
                   <div class="denomination">ZAR</div>
                 </div>
               </div>
