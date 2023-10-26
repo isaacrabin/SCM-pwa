@@ -26,7 +26,7 @@ export class RestockCartComponent implements OnInit {
   }
 
   goToNextPage() {
-    this.router.navigate(['./address']);
+    this.router.navigate(['./dashboard/address']);
   }
 
 }

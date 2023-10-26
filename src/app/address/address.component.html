@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button text color="dark" default-href="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Delivery Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button class="ion-margin" (click)="null" expand="full" fill="outline"
+    shape="round">
+    Add A New Address
+  </ion-button>
+
+  <div class="address ion-padding">
+    <ion-item lines="none">
+      <ion-label>
+        <h2>John Kamara</h2>
+        <p>Queenswood Pretoria, South Africa. </p>
+        <p>+27 701 611 450</p>
+      </ion-label>
+      <ion-buttons class="action-buttons" slot="end">
+        <ion-button (click)="null">
+          <ion-icon slot="icon-only" src="./assets/custom-icons/pen.svg"></ion-icon>
+        </ion-button>
+        <ion-button (click)="null">
+          <ion-icon slot="icon-only" name="trash-outline" color="danger"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-button (click)="null" expand="block"
+      shape="round">
+      Primary Address
+    </ion-button>
+  </div>
+  <div class="address ion-padding">
+    <ion-item lines="none">
+      <ion-label>
+        <h2>John Kamara</h2>
+        <p>Queenswood Pretoria, South Africa. </p>
+        <p>+27 701 611 450</p>
+      </ion-label>
+      <ion-buttons class="action-buttons" slot="end">
+        <ion-button (click)="null">
+          <ion-icon slot="icon-only" src="./assets/custom-icons/pen.svg"></ion-icon>
+        </ion-button>
+        <ion-button (click)="null">
+          <ion-icon slot="icon-only" name="trash-outline" color="danger"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-button (click)="null" expand="block" fill="outline"
+      shape="round">
+      Make Primary Address
+    </ion-button>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button class="ion-margin" (click)="goToNextPage()" expand="block"
+      fill="solid">
+      Next
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

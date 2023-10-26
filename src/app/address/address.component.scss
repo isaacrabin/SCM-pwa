@@ -1,0 +1,25 @@
+.action-buttons {
+  flex-direction: column;
+}
+
+.address {
+  border-top: 1px solid var(--ion-color-medium, grey);
+
+  &:last-child {
+    border-block: 1px solid var(--ion-color-medium, grey)
+  }
+}
+
+ion-button {
+
+  font-weight: 600;
+
+  &[fill="solid"] {
+    --color: white;
+  }
+
+  &:not([fill]) {
+    --color: white;
+
+  }
+}
