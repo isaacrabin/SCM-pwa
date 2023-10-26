@@ -8,3 +8,19 @@ export const selectCartItems = createSelector(
   selectCartState,
   (cart) => cart
 );
+
+export const isItemInCart = (itemName: string) => createSelector(
+  selectCartItems,
+  (state: CartState) => {
+    console.log('name in selector: ', itemName);
+    return !!state.items.find(item => item.item_name === itemName)
+  }
+);
+
+export const selectItemQuantity = (itemName: string) => createSelector(
+  selectCartItems,
+  (state: CartState) => {
+    const item = state.items.find(i => i.item_name === itemName);
+    return item ? item.quantity : 0;
+  }
+);

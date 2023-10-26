@@ -111,4 +111,14 @@
       <ion-icon name="add" color="light"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  <ng-container *ngIf="(cartItems$ | async) as items">
+    <ion-fab *ngIf="items.totalItems " (click)="viewCart()"
+      slot="fixed" horizontal="start" vertical="bottom">
+      <ion-fab-button color="tertiary">
+        <ion-icon name="cart" color="light"></ion-icon>
+      </ion-fab-button>
+      <ion-badge color="secondary">{{items.totalItems}}</ion-badge>
+    </ion-fab>
+  </ng-container>
+
 </ion-content>

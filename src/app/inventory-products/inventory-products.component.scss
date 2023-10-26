@@ -2,3 +2,11 @@ ion-modal.auto-height {
   // --height: 250px;
   --width: min(100%, 450px);
 }
+
+ion-fab {
+  ion-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
+}

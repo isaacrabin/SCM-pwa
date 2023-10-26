@@ -43,12 +43,52 @@
       </ion-button>
 
     </ion-col>
-    <ion-col size="6">
-      <ion-button (click)="presentAlert()" expand="block" fill="outline"
-        shape="round">
-        Purchase Product
-      </ion-button>
-    </ion-col>
+    <ng-container *ngIf="cartItems$ | async as cartItems">
+
+      <ng-container *ngIf="itemInCart$ | async; else add">
+        <ion-col size="6">
+          <ion-buttons class="ion-justify-content-center">
+            <ng-container *ngFor="let item of cartItems.items; let i = index">
+
+              <strong>
+                <p *ngIf="item.item_name === paramId">
+                  {{item.quantity}}
+                </p>
+              </strong>
+            </ng-container>
+            <ng-container
+              *ngIf="(quantityInCart$ | async) === 1; else reduceItems">
+
+              <ion-button slot="start" (click)="reduceFromCart()"
+                fill="clear"
+                color="danger">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-button>
+            </ng-container>
+            <ng-template #reduceItems>
+              <ion-button slot="start" (click)="reduceFromCart()">
+                <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+              </ion-button>
+
+            </ng-template>
+
+            <ion-button slot="end" (click)="addToCart()">
+              <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-col>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #add>
+      <ion-col size="6">
+        <ion-button (click)="presentAlert()" expand="block" fill="outline"
+          shape="round">
+          Purchase Product
+        </ion-button>
+      </ion-col>
+    </ng-template>
+
     <ion-col size="6">
       <ion-button (click)="null" expand="block" fill="outline" shape="round">
         Set Low Stock Alert

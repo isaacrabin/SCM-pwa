@@ -12,7 +12,6 @@ export const cartReducer = createReducer(
   initialCartState,
 
   on(CartActions.addItem, (state, { item }) => {
-    // Logic to add item to cart
 
     // Check if the item is already in the cart
     const existingItemIndex = state.items.findIndex(i => i.item_code === item.item_code);
@@ -43,36 +42,52 @@ export const cartReducer = createReducer(
       totalItems: state.totalItems + item.quantity,
       totalPrice: state.totalPrice + (item.standard_rate * item.quantity)
     };
-
-
   }),
 
-  on(CartActions.removeItem, (state, { itemId }) => {
-    // Find the item in the cart
-    const existingItemIndex = state.items.findIndex(i => i.item_code === itemId);
+  on(CartActions.reduceItem, (state, { itemName }) => {
+    const itemIndex = state.items.findIndex(item => item.item_name === itemName);
+    let updatedItems = [...state.items]; // create a copy
 
-    if (existingItemIndex === -1) {
-      // Item not found in the cart; return the state unchanged.
-      return state;
+    if (itemIndex > -1) {
+      const currentItem = state.items[itemIndex];
+      if (currentItem.quantity > 1) {
+        // Decrement the quantity
+        const updatedItem: CartItem = {
+          ...currentItem,
+          quantity: currentItem.quantity - 1
+        };
+        updatedItems[itemIndex] = updatedItem;
+      } else {
+        // Remove the item from the cart when its quantity reaches zero
+        updatedItems = updatedItems.filter(item => item.item_name !== itemName);
+      }
     }
 
-    // Get the item to be removed
-    const itemToRemove = state.items[existingItemIndex];
+    const updatedTotalItems = updatedItems.reduce((acc, item) => acc + item.quantity, 0);
+    const updatedTotalPrice = updatedItems.reduce((acc, item) => acc + (item.standard_rate * item.quantity), 0);
 
-    // Create a new array without the removed item
-    const newItems = [
-      ...state.items.slice(0, existingItemIndex),
-      ...state.items.slice(existingItemIndex + 1)
-    ];
-
-    // Update the totalItems and totalPrice
     return {
       ...state,
-      items: newItems,
-      totalItems: state.totalItems - itemToRemove.quantity,
-      totalPrice: state.totalPrice - (itemToRemove.standard_rate * itemToRemove.quantity)
+      items: updatedItems,
+      totalItems: updatedTotalItems,
+      totalPrice: updatedTotalPrice
     };
   }),
+
+  on(CartActions.removeItem, (state, { itemName }) => {
+    const updatedItems = state.items.filter(item => item.item_name !== itemName);
+
+    const updatedTotalItems = updatedItems.reduce((acc, item) => acc + item.quantity, 0);
+    const updatedTotalPrice = updatedItems.reduce((acc, item) => acc + (item.standard_rate * item.quantity), 0);
+
+    return {
+      ...state,
+      items: updatedItems,
+      totalItems: updatedTotalItems,
+      totalPrice: updatedTotalPrice
+    };
+  }),
+
 
   on(CartActions.clearCart, state => initialCartState)
 );

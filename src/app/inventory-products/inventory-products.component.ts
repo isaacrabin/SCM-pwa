@@ -2,12 +2,15 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
 import { AddProductOneComponent } from '../add-product-one/add-product-one.component';
 import { BaseModalComponent } from '../base-modal/base-modal.component';
 import { DashboardItemComponent } from '../dashboard-item/dashboard-item.component';
 import { ItemsService } from '../services/items.service';
 import { GetItemsResults } from '../shared/interfaces/get-items.interface';
+import { AppState } from '../shared/interfaces/states.interface';
+import { selectCartItems } from '../shared/store/inventory';
 
 @Component({
   standalone: true,
@@ -19,10 +22,14 @@ import { GetItemsResults } from '../shared/interfaces/get-items.interface';
 export class InventoryProductsComponent implements OnInit {
 
   private getItemsService = inject(ItemsService)
-  private router = inject(Router)
+  private router = inject(Router);
+  private store = inject(Store<AppState>);
+
   modalController = inject(ModalController)
 
   selectedItem!: string;
+
+  cartItems$ = this.store.select(selectCartItems)
 
   images = [
     'yellow-phone',
@@ -66,11 +73,10 @@ export class InventoryProductsComponent implements OnInit {
       state: item
     })
 
-    // this._router.navigateByUrl(`${this._router.url}/${this.post.id}`, {
-    //   state: {
-    //     post: this.post,
-    //     comment
-    //   }
-    // });
   }
+
+  viewCart() {
+    this.router.navigateByUrl('/dashboard/restock')
+  }
+
 }
