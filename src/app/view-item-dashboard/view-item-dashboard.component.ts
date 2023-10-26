@@ -1,7 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, IonicModule, ToastController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { GetItemsResults } from '../shared/interfaces/get-items.interface';
+import { AppState } from '../shared/interfaces/states.interface';
+import { selectCartItems } from '../shared/store/inventory';
+import * as CartActions from '../shared/store/inventory/cart.actions';
+import { CartItem } from '../shared/store/inventory/cart.model';
 
 @Component({
   selector: 'app-view-item-dashboard',
@@ -22,7 +27,8 @@ export class ViewItemDashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private toastCtrl: ToastController,
-    private alertCtrl: AlertController) { }
+    private alertCtrl: AlertController,
+    private store: Store<AppState>) { }
 
   ngOnInit() {
   }
@@ -73,8 +79,16 @@ export class ViewItemDashboardComponent implements OnInit {
   }
 
   addToCart() {
+    const item: CartItem = {
+      item_code: this.item.item_code,
+      item_name: this.item.item_name,
+      quantity: 1,
+      image: this.item.image || null,
+      standard_rate: this.item.standard_rate
+    }
+    this.store.dispatch(CartActions.addItem({ item }));
     this.presentToastWithOptions(`${this.item.item_name} has been added to the cart. You can checkout later. `)
-    this.router.navigateByUrl('/dashboard')
+    // this.router.navigateByUrl('/dashboard')
   }
 
   async presentToastWithOptions(msg: string) {
@@ -95,6 +109,12 @@ export class ViewItemDashboardComponent implements OnInit {
       duration: 3000
     });
     toast.present();
+  }
+
+  getCartItems() {
+    console.log('clicked',);
+    this.store.select(selectCartItems)
+      .subscribe(resp => console.log('cart: ', resp))
   }
 
 }
