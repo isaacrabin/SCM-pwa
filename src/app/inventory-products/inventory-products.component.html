@@ -24,24 +24,10 @@
   <ion-list lines="full">
 
     <ng-container *ngFor="let i of [].constructor(3)">
+      <ng-container *ngFor="let image of images">
+        <app-dashboard-item [image]="image" (more)="openModal(image)"></app-dashboard-item>
 
-      <ion-item class="inventory-item" *ngFor="let image of images">
-        <ion-thumbnail slot="start">
-          <img [alt]="image"
-            [src]="'./assets/images/'+ image + '.jpeg'" />
-        </ion-thumbnail>
-        <ion-label> <h3>{{image}}</h3> <p>ZAR. 16000</p> </ion-label>
-        <div class="more" slot="end">
-          <!-- <ion-button (click)="null" color="secondary" expand="block"
-            fill="clear"
-            shape="round">
-          </ion-button> -->
-          <p class="inventory">50</p>
-          <ion-button (click)="openModal(image)" fill="none" color="dark">
-            <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
-          </ion-button>
-        </div>
-      </ion-item>
+      </ng-container>
     </ng-container>
 
   </ion-list>

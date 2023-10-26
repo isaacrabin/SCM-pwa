@@ -1,23 +1,3 @@
-.inventory-item {
-  --padding-start: 0;
-
-  ion-thumbnail {
-    width: 70px;
-    height: 70px;
-    margin-block: 0;
-  }
-
-
-  .more {
-    display: flex;
-    align-items: center;
-
-    .inventory {
-      color: var(--ion-color-secondary);
-    }
-  }
-}
-
 ion-modal.auto-height {
   // --height: 250px;
   --width: min(100%, 450px);

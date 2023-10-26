@@ -3,20 +3,20 @@ import { Component, OnInit, inject } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { AddProductOneComponent } from '../add-product-one/add-product-one.component';
 import { BaseModalComponent } from '../base-modal/base-modal.component';
+import { DashboardItemComponent } from '../dashboard-item/dashboard-item.component';
 
 @Component({
   standalone: true,
   selector: 'app-inventory-products',
   templateUrl: './inventory-products.component.html',
   styleUrls: ['./inventory-products.component.scss'],
-  imports: [IonicModule, NgFor]
+  imports: [IonicModule, NgFor, DashboardItemComponent]
 })
 export class InventoryProductsComponent implements OnInit {
 
   modalController = inject(ModalController)
 
   selectedItem!: string;
-
 
   images = [
     'yellow-phone',

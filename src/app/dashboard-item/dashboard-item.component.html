@@ -1,0 +1,17 @@
+<ion-item class="inventory-item">
+  <ion-thumbnail slot="start">
+    <img [alt]="image"
+      [src]="'./assets/images/'+ image + '.jpeg'" />
+  </ion-thumbnail>
+  <ion-label> <h3>{{image}}</h3> <p>ZAR. 16000</p> </ion-label>
+  <div class="more" slot="end">
+    <!-- <ion-button (click)="null" color="secondary" expand="block"
+              fill="clear"
+              shape="round">
+            </ion-button> -->
+    <p class="inventory">50</p>
+    <ion-button (click)="moreClicked()" fill="none" color="dark">
+      <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
+    </ion-button>
+  </div>
+</ion-item>

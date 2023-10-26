@@ -11,6 +11,10 @@ const dashboardRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('./inventory-products/inventory-products.component').then(m => m.InventoryProductsComponent)
+  },
+  {
+    path: 'restock',
+    loadComponent: () => import('./base-restock/base-restock.component').then(m => m.BaseRestockComponent)
   }
 ]
 

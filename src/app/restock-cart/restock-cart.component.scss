@@ -1,0 +1,48 @@
+ion-header {
+  box-shadow: none;
+
+  ion-toolbar {
+    --background: inherit;
+  }
+}
+
+.input__discount {
+  --border-radius: 3.125rem;
+  --border-color: red;
+  --padding-start: 15px;
+  color: #1E1E1E;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 150%;
+  height: 3rem;
+  min-height: unset;
+}
+
+.dotted-line {
+  border-bottom: dashed 2px grey;
+}
+
+ion-col.amount {
+  text-align: right;
+  font-weight: 600;
+}
+
+.delivery-options {
+
+  & :first-child {
+    color: white;
+  }
+
+}
+
+ion-button {
+  font-weight: 600;
+
+  &::part(native) {
+    height: 40px;
+  }
+
+  &[fill="solid"] {
+    --color: white;
+  }
+}
