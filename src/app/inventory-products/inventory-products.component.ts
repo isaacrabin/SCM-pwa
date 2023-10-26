@@ -62,7 +62,15 @@ export class InventoryProductsComponent implements OnInit {
   }
 
   viewItem(item: GetItemsResults) {
-    console.log('clicked',);
-    this.router.navigateByUrl("/dashboard/item/" + item.item_name)
+    this.router.navigateByUrl(`/dashboard/item/${item.item_name}`, {
+      state: item
+    })
+
+    // this._router.navigateByUrl(`${this._router.url}/${this.post.id}`, {
+    //   state: {
+    //     post: this.post,
+    //     comment
+    //   }
+    // });
   }
 }

@@ -12,7 +12,7 @@ import { GetItemsResults } from '../shared/interfaces/get-items.interface';
 })
 export class DashboardItemComponent implements OnInit {
 
-  @Input() item!: GetItemsResults;
+  @Input() item!: GetItemsResults | Partial<GetItemsResults>;
   @Output() more: EventEmitter<null> = new EventEmitter()
 
   constructor() { }

@@ -9,9 +9,9 @@
 <ion-content>
   <ion-list lines="full">
 
-    <ng-container *ngFor="let image of images">
+    <ng-container *ngFor="let item of items">
 
-      <!-- <app-dashboard-item [item]="image"></app-dashboard-item> -->
+      <app-dashboard-item [item]="item"></app-dashboard-item>
     </ng-container>
 
     <!-- <ion-label>Discount</ion-label>
@@ -27,7 +27,7 @@
   <div class="summary ion-padding">
     <ion-row>
       <ion-col class="title" size="6">Total Item(s)</ion-col>
-      <ion-col class="amount" size="6">8</ion-col>
+      <ion-col class="amount" size="6">2</ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="title" size="6">Price</ion-col>
@@ -74,7 +74,7 @@
   <ion-toolbar>
     <ion-button class="ion-margin" (click)="goToNextPage()" expand="block"
       fill="solid">
-      Next
+      Make Order
     </ion-button>
   </ion-toolbar>
 </ion-footer>

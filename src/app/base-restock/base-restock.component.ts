@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { RestockComponent } from '../restock/restock.component';
+import { RestockCartComponent } from '../restock-cart/restock-cart.component';
 
 @Component({
   selector: 'app-base-restock',
@@ -16,6 +16,6 @@ export class BaseRestockComponent implements OnInit {
   ngOnInit() {
   }
 
-  nextPage = RestockComponent;
+  nextPage = RestockCartComponent;
 
 }

@@ -2,6 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { fakeItems } from 'src/assets/data/items';
 import { DashboardItemComponent } from '../dashboard-item/dashboard-item.component';
 
 @Component({
@@ -20,6 +21,8 @@ export class RestockCartComponent implements OnInit {
     'macbook',
   ]
 
+  items = fakeItems
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -27,6 +30,7 @@ export class RestockCartComponent implements OnInit {
 
   goToNextPage() {
     this.router.navigate(['./dashboard/address']);
+    // console.log('make order',  );
   }
 
 }
