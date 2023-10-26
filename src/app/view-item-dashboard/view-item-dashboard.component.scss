@@ -1,0 +1,64 @@
+:host {
+  --border-bottom: solid 1px #979797;
+}
+
+.image-container {
+  height: 200px;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  justify-content: center;
+
+  img {
+    max-width: max(100%, 200px);
+    object-fit: cover;
+  }
+}
+
+.item-info {
+  margin-top: 5px;
+  border-bottom: var(--border-bottom);
+
+  &__name {
+    font-size: 1rem;
+  }
+
+  &__price {
+    font-size: 0.8rem;
+    font-weight: 600;
+
+  }
+
+}
+
+.caution-info {
+  border-bottom: var(--border-bottom);
+
+}
+
+.item-amount {
+  color: white;
+  background: #13A8BD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ion-icon {
+    font-size: 40px;
+  }
+
+  span {
+    font-size: 22px;
+    font-weight: 600;
+  }
+}
+
+.action-btns {
+  ion-button {
+    min-height: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    --border-width: 2px;
+  }
+}

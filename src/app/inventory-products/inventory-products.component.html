@@ -23,12 +23,17 @@
 
   <ion-list lines="full">
 
-    <ng-container *ngFor="let i of [].constructor(3)">
-      <ng-container *ngFor="let image of images">
-        <app-dashboard-item [image]="image" (more)="openModal(image)"></app-dashboard-item>
-
+    <ng-container *ngIf="(items$ | async) as items; else loadingOrError">
+      <ng-container *ngFor="let item of items">
+        <app-dashboard-item (click)="viewItem(item)" [item]="item"
+          (more)="openModal(item.name)"></app-dashboard-item>
       </ng-container>
     </ng-container>
+
+    <ng-template #loadingOrError>
+      <app-dashboard-item></app-dashboard-item>
+
+    </ng-template>
 
   </ion-list>
 

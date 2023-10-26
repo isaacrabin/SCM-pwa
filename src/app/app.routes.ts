@@ -19,6 +19,10 @@ const dashboardRoutes: Routes = [
   {
     path: 'address',
     loadComponent: () => import('./address/address.component').then(m => m.AddressComponent)
+  },
+  {
+    path: 'item/:id',
+    loadComponent: () => import('./view-item-dashboard/view-item-dashboard.component').then(m => m.ViewItemDashboardComponent)
   }
 ]
 

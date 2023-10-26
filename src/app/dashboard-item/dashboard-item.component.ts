@@ -1,16 +1,18 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { GetItemsResults } from '../shared/interfaces/get-items.interface';
 
 @Component({
   selector: 'app-dashboard-item',
   templateUrl: './dashboard-item.component.html',
   styleUrls: ['./dashboard-item.component.scss'],
-  imports: [IonicModule],
+  imports: [IonicModule, NgIf, NgFor],
   standalone: true
 })
 export class DashboardItemComponent implements OnInit {
 
-  @Input() image!: string;
+  @Input() item!: GetItemsResults;
   @Output() more: EventEmitter<null> = new EventEmitter()
 
   constructor() { }

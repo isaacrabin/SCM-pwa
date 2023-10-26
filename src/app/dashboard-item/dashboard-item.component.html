@@ -1,17 +1,42 @@
-<ion-item class="inventory-item">
-  <ion-thumbnail slot="start">
-    <img [alt]="image"
-      [src]="'./assets/images/'+ image + '.jpeg'" />
-  </ion-thumbnail>
-  <ion-label> <h3>{{image}}</h3> <p>ZAR. 16000</p> </ion-label>
-  <div class="more" slot="end">
-    <!-- <ion-button (click)="null" color="secondary" expand="block"
-              fill="clear"
-              shape="round">
-            </ion-button> -->
-    <p class="inventory">50</p>
-    <ion-button (click)="moreClicked()" fill="none" color="dark">
-      <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
-    </ion-button>
-  </div>
-</ion-item>
+<ng-container *ngIf="item; else loadingItems">
+  <ion-item class="inventory-item">
+    <ion-thumbnail slot="start">
+      <img [alt]="item.name"
+        [src]="item.image ?? './assets/images/no-image.svg'" />
+    </ion-thumbnail>
+    <ion-label> <h3>{{item.item_name}}</h3> <p>ZAR. {{item.standard_rate}}</p>
+    </ion-label>
+    <div class="more" slot="end">
+      <!-- <ion-button (click)="null" color="secondary" expand="block"
+                fill="clear"
+                shape="round">
+              </ion-button> -->
+      <p class="inventory">{{item.opening_stock}}</p>
+      <ion-button (click)="moreClicked()" fill="none" color="dark">
+        <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-item>
+</ng-container>
+<ng-template #loadingItems>
+  <ng-container *ngFor="let item of [].constructor(5)">
+    <ion-item class="inventory-item">
+      <ion-thumbnail slot="start">
+        <!-- <img alt="loading" src /> -->
+        <ion-skeleton-text animated style="width: 100%; height: 100%"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label> <h3><ion-skeleton-text animated style="width: 70%"></ion-skeleton-text></h3>
+        <p><ion-skeleton-text animated style="width: 40%"></ion-skeleton-text></p>
+      </ion-label>
+      <div class="more" slot="end">
+        <!-- <ion-button (click)="null" color="secondary" expand="block"
+                fill="clear"
+                shape="round">
+              </ion-button> -->
+        <ion-button fill="none" color="dark" disabled="true">
+          <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ng-container>
+</ng-template>

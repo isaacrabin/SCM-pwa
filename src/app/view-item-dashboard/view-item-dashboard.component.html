@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text color="dark" default-href="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Inventory Management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="image-container">
+    <img
+      src="https://barn.co.ke/electronics/assets/uploads/product-featured-363.png"
+      alt>
+  </div>
+  <div class="item-info ion-padding ion-text-center">
+
+    <p class="item-info__name">Loose Tomatoes Per Kg</p>
+    <p class="item-info__price">ZAR. 1,000.00</p>
+
+  </div>
+
+  <div class="caution-info ion-text-center">
+    <h4 class="ion-margin-vertical">Realtime Stock Management</h4>
+    <p class="ion-margin-vertical">Changes will be reflected immediately.</p>
+  </div>
+
+  <div class="item-amount ion-padding-vertical">
+    <ion-icon slot="icon-only" src="./assets/custom-icons/inventory.svg"></ion-icon>
+    &nbsp;<span>42</span> &nbsp; Pieces
+  </div>
+
+  <ion-row class="action-btns ion-margin-vertical">
+    <ion-col size="6">
+      <ion-button (click)="null" expand="block" fill="outline" shape="round">
+        Decraese Quantity
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button (click)="null" expand="block" fill="outline" shape="round">
+        Increase Quantity
+      </ion-button>
+
+    </ion-col>
+    <ion-col size="6">
+      <ion-button (click)="null" expand="block" fill="outline" shape="round">
+        Purchase Product
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button (click)="null" expand="block" fill="outline" shape="round">
+        Set Low Stock Alert
+      </ion-button>
+
+    </ion-col>
+    <ion-col size="6" offset="3">
+      <ion-button (click)="null" expand="block" fill="clear" shape="round">
+        View Inventory History
+      </ion-button>
+
+    </ion-col>
+  </ion-row>
+
+</ion-content>
