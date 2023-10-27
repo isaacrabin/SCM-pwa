@@ -5,6 +5,7 @@ import { Store } from "@ngrx/store";
 import { EMPTY } from 'rxjs';
 import { catchError, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
 import { ItemsService, PayloadItem } from "src/app/services/items.service";
+import { ToastService } from 'src/app/services/toast.service';
 import * as CartActions from './cart.actions';
 import { selectCartItems } from "./cart.selector";
 
@@ -14,15 +15,15 @@ export class CartEffects {
   constructor(
     private actions$: Actions,
     private itemsSrv: ItemsService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private toastSrv: ToastService
   ) { }
 
   checkout$ = createEffect(() => this.actions$.pipe(
-    tap(action => console.log('Action received:', action)),  // Log here
     ofType(CartActions.checkout),
-    tap(() => console.log('Passed filter')),  // Log here
+
+    tap(() => this.store.dispatch(CartActions.checkoutStart())),
     withLatestFrom(this.store.select(selectCartItems)),
-    tap(([action, selectedState]) => console.log('With store state:', selectedState)),  // Log here
     mergeMap(([action, selectedState]) => {
 
       const items: PayloadItem[] = selectedState.items.map(item => ({
@@ -33,13 +34,20 @@ export class CartEffects {
         total_amount: (item.quantity * item.standard_rate).toString(),
       }));
 
-      return this.itemsSrv.makeOrder(items, selectedState.totalPrice).pipe(
-        map(() => CartActions.clearCart()), // Clear the cart after HTTP success
-        catchError((error) => {
-          console.error('Error during checkout:', error);
-          return EMPTY;
-        })
-      );
+      return this.itemsSrv.makeOrder(items, selectedState.totalPrice)
+        .pipe(
+          map(() => {
+            this.store.dispatch(CartActions.checkoutComplete());
+            this.toastSrv.presentToastWithOptions('Your order was placed successfully.')
+            return CartActions.clearCart(); // Clear the cart after HTTP success
+          }),
+          catchError((error) => {
+            console.error('Error during checkout:', error);
+            this.store.dispatch(CartActions.checkoutComplete());
+            this.toastSrv.presentToastWithOptions('Error! Could not complete placing your order.')
+            return EMPTY;
+          })
+        );
     })
   ));
 }

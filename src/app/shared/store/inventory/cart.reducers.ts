@@ -5,7 +5,8 @@ import { CartItem, CartState } from './cart.model';
 export const initialCartState: CartState = {
   items: [],
   totalItems: 0,
-  totalPrice: 0
+  totalPrice: 0,
+  isCheckingOut: false
 };
 
 export const cartReducer = createReducer(
@@ -89,5 +90,15 @@ export const cartReducer = createReducer(
   }),
 
 
-  on(CartActions.clearCart, state => initialCartState)
+  on(CartActions.clearCart, state => initialCartState),
+
+  on(CartActions.checkoutStart, (state) => ({
+    ...state,
+    isCheckingOut: true
+  })),
+  on(CartActions.checkoutComplete, (state) => ({
+    ...state,
+    isCheckingOut: false
+  }))
+
 );

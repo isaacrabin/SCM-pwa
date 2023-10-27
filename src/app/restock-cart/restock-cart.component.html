@@ -122,9 +122,11 @@
 
 <ion-footer *ngIf="!!((items$ | async)?.totalItems)">
   <ion-toolbar>
-    <ion-button class="ion-margin" (click)="checkOut()" expand="block"
+    <ion-button class="ion-margin" [disabled]="isCheckingOut$ | async"
+      (click)="checkOut()" expand="block"
       fill="solid">
-      Make Order
+      {{ (isCheckingOut$ | async) ? '': 'Make Order'}}
+      <ion-spinner *ngIf="isCheckingOut$ | async" name="dots"></ion-spinner>
     </ion-button>
   </ion-toolbar>
 </ion-footer>

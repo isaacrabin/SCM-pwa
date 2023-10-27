@@ -11,4 +11,5 @@ export interface CartState {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
+  isCheckingOut: boolean;
 }

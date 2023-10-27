@@ -23,3 +23,5 @@ export const selectItemQuantity = (itemName: string) => createSelector(
     return item ? item.quantity : 0;
   }
 );
+
+export const selectIsCheckingOut = (state: CartState) => state.isCheckingOut;
