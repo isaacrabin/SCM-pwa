@@ -62,4 +62,8 @@ export class RestockCartComponent implements OnInit {
     this.router.navigateByUrl('/dashboard');
   }
 
+  checkOut() {
+    this.store.dispatch(CartActions.checkout());
+  }
+
 }

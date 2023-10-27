@@ -135,5 +135,4 @@ export class ViewItemDashboardComponent implements OnInit {
     this.store.select(selectCartItems).subscribe()
   }
 
-
 }

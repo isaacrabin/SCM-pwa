@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <ion-back-button text color="dark" default-href="/dashboard"></ion-back-button>
+      <ion-back-button text color="dark" defaultHref="/dashboard"></ion-back-button>
     </ion-buttons>
     <ion-title>Cart</ion-title>
   </ion-toolbar>
@@ -120,9 +120,9 @@
 
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="!!((items$ | async)?.totalItems)">
   <ion-toolbar>
-    <ion-button class="ion-margin" (click)="goToNextPage()" expand="block"
+    <ion-button class="ion-margin" (click)="checkOut()" expand="block"
       fill="solid">
       Make Order
     </ion-button>

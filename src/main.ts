@@ -4,12 +4,13 @@ import { RouteReuseStrategy, provideRouter, withComponentInputBinding } from '@a
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import { httpInterceptor } from './app/shared/interceptors/http.interceptor';
-import { cartReducer } from './app/shared/store/inventory';
+import { CartEffects, cartReducer } from './app/shared/store/inventory';
 import { environment } from './environments/environment';
 
 if (environment.production) {
@@ -24,6 +25,7 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(
       withInterceptors([httpInterceptor])
     ),
+    provideEffects([CartEffects]),
     provideStore({ inventory: cartReducer }),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
