@@ -46,3 +46,33 @@ ion-button {
     --color: white;
   }
 }
+
+.inventory-item {
+  --padding-start: 0;
+
+  ion-thumbnail {
+    width: 70px;
+    height: 70px;
+    margin-block: 0;
+  }
+
+
+  .more {
+    display: flex;
+    align-items: center;
+
+    .inventory {
+      color: var(--ion-color-secondary);
+    }
+  }
+}
+
+.empty-container {
+
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: var(--ion-color-medium);
+}

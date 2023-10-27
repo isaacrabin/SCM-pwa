@@ -48,6 +48,15 @@
       <ng-container *ngIf="itemInCart$ | async; else add">
         <ion-col size="6">
           <ion-buttons class="ion-justify-content-center">
+
+            <ion-button
+              *ngIf="(quantityInCart$ | async) === 1; else reduceItems"
+              slot="start" (click)="reduceFromCart()"
+              fill="clear"
+              color="danger">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-button>
+
             <ng-container *ngFor="let item of cartItems.items; let i = index">
 
               <strong>
@@ -55,15 +64,6 @@
                   {{item.quantity}}
                 </p>
               </strong>
-            </ng-container>
-            <ng-container
-              *ngIf="(quantityInCart$ | async) === 1; else reduceItems">
-
-              <ion-button slot="start" (click)="reduceFromCart()"
-                fill="clear"
-                color="danger">
-                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-              </ion-button>
             </ng-container>
             <ng-template #reduceItems>
               <ion-button slot="start" (click)="reduceFromCart()">

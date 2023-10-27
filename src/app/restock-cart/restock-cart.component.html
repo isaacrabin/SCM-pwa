@@ -7,66 +7,116 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list lines="full">
 
-    <ng-container *ngFor="let item of items">
+  <ng-container *ngIf="(items$ | async)  as cart; ">
+    <ng-container *ngIf="cart.totalItems; else emptyCart">
 
-      <app-dashboard-item [item]="item"></app-dashboard-item>
+      <ng-container *ngFor="let item of cart.items">
+        <ion-list lines="full">
+
+          <ion-item class="inventory-item">
+            <ion-thumbnail slot="start">
+              <img [alt]="item.item_name"
+                [src]="item.image ?? './assets/images/no-image.svg'" />
+            </ion-thumbnail>
+            <ion-label> <h3>{{item.item_name}}</h3> <p>ZAR.
+                {{item.standard_rate}}</p>
+            </ion-label>
+            <div class="more" slot="end">
+              <!-- <ion-button (click)="null" color="secondary" expand="block"
+                    fill="clear"
+                    shape="round">
+                  </ion-button> -->
+              <ion-buttons slot="end" class="ion-justify-content-center">
+                <ion-button *ngIf="item.quantity === 1; else reduceItems"
+                  slot="start" (click)="reduceFromCart(item)"
+                  fill="clear"
+                  color="danger">
+                  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                </ion-button>
+
+                <p class="inventory">{{item.quantity}}</p>
+
+                <ng-template #reduceItems>
+                  <ion-button slot="start" (click)="reduceFromCart(item)">
+                    <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+                  </ion-button>
+                </ng-template>
+
+                <ion-button slot="end" (click)="addToCart(item)">
+                  <ion-icon slot="icon-only" name="add"></ion-icon>
+                </ion-button>
+
+              </ion-buttons>
+
+              <ion-button (click)="null" fill="none" color="dark">
+                <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
+              </ion-button>
+
+            </div>
+          </ion-item>
+        </ion-list>
+      </ng-container>
+
+      <div class="summary ion-padding">
+        <ion-row>
+          <ion-col class="title" size="6">Total Item(s)</ion-col>
+          <ion-col class="amount" size="6">{{cart.totalItems}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="title" size="6">Price</ion-col>
+          <ion-col class="amount" size="6">ZAR {{cart.totalPrice | number :
+            '1.2-2'}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="title" size="6">Discount</ion-col>
+          <ion-col class="amount" size="6">ZAR 0</ion-col>
+        </ion-row>
+        <div class="dotted-line"></div>
+        <ion-row>
+          <ion-col class="title" size="6">Total Price</ion-col>
+          <ion-col class="amount" size="6">ZAR {{cart.totalPrice | number :
+            '1.2-2'}}</ion-col>
+        </ion-row>
+      </div>
+
+      <div class="delivery-options">
+        <ion-button class="ion-margin" (click)="null" expand="full" fill="solid"
+          shape="round">
+          Pick Up Now
+        </ion-button>
+        <ion-button class="ion-margin" (click)="null" expand="full"
+          fill="outline"
+          shape="round">
+          Cash On Delivery
+        </ion-button>
+
+        <!-- <ion-radio-group value="delivery" (ionChange)="null">
+        <ion-item class="ion-margin-bottom" lines="none">
+          <ion-radio mode="md" value="pick"
+            aria-label="pick up now">
+            Pick Up Now</ion-radio>
+        </ion-item>
+        <ion-item class="ion-margin-bottom" lines="none">
+          <ion-radio mode="md" value="COD"
+            aria-label="Cash On Delivery">
+            Cash On Delivery</ion-radio>
+        </ion-item>
+      </ion-radio-group> -->
+      </div>
     </ng-container>
+  </ng-container>
 
-    <!-- <ion-label>Discount</ion-label>
-    <ion-input
-      mode="ios"
-      type="text"
-      aria-label="discount"
-      placeholder="Enter discount code"
-      class="ion-margin-vertical input__discount"></ion-input> -->
+  <ng-template #emptyCart>
+    <div class="empty-container">
 
-  </ion-list>
-
-  <div class="summary ion-padding">
-    <ion-row>
-      <ion-col class="title" size="6">Total Item(s)</ion-col>
-      <ion-col class="amount" size="6">2</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="title" size="6">Price</ion-col>
-      <ion-col class="amount" size="6">ZAR 903,200</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="title" size="6">Discount</ion-col>
-      <ion-col class="amount" size="6">ZAR 3,200</ion-col>
-    </ion-row>
-    <div class="dotted-line"></div>
-    <ion-row>
-      <ion-col class="title" size="6">Total Price</ion-col>
-      <ion-col class="amount" size="6">ZAR 900,000</ion-col>
-    </ion-row>
-  </div>
-
-  <div class="delivery-options">
-    <ion-button class="ion-margin" (click)="null" expand="full" fill="solid"
-      shape="round">
-      Pick Up Now
-    </ion-button>
-    <ion-button class="ion-margin" (click)="null" expand="full" fill="outline"
-      shape="round">
-      Cash On Delivery
-    </ion-button>
-
-    <!-- <ion-radio-group value="delivery" (ionChange)="null">
-      <ion-item class="ion-margin-bottom" lines="none">
-        <ion-radio mode="md" value="pick"
-          aria-label="pick up now">
-          Pick Up Now</ion-radio>
-      </ion-item>
-      <ion-item class="ion-margin-bottom" lines="none">
-        <ion-radio mode="md" value="COD"
-          aria-label="Cash On Delivery">
-          Cash On Delivery</ion-radio>
-      </ion-item>
-    </ion-radio-group> -->
-  </div>
+      <p>No items in your cart</p>
+      <ion-button (click)="goBack()" expand="block" fill="outline" shape="round"
+        color="medium">
+        Go Back
+      </ion-button>
+    </div>
+  </ng-template>
 
 </ion-content>
 

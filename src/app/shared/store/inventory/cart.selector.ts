@@ -12,7 +12,6 @@ export const selectCartItems = createSelector(
 export const isItemInCart = (itemName: string) => createSelector(
   selectCartItems,
   (state: CartState) => {
-    console.log('name in selector: ', itemName);
     return !!state.items.find(item => item.item_name === itemName)
   }
 );

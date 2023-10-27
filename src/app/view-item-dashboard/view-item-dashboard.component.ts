@@ -132,9 +132,7 @@ export class ViewItemDashboardComponent implements OnInit {
   }
 
   getCartItems() {
-    console.log('clicked',);
-    this.store.select(selectCartItems)
-      .subscribe(resp => console.log('cart: ', resp))
+    this.store.select(selectCartItems).subscribe()
   }
 
 
