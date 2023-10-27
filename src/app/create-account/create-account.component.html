@@ -11,109 +11,222 @@
 </ion-header>
 <ion-content class="ion-padding">
   <h3 class="title">What are your details?</h3>
-  <form [formGroup]="registerForm" (submit)="goToNextPage()">
+  <form [formGroup]="registerForm" (submit)="submit()">
 
     <div class="names">
-      <div class="first-name">
+      <div class="first-name ion-margin-top">
         <ion-label>First Name</ion-label>
         <ion-input
+          formControlName="firstName"
           mode="md"
           color="primary"
           fill="outline"
           shape="round"
           aria-label="First Name"
-          placeholder="First Name"
-          class="ion-margin-bottom"></ion-input>
+          placeholder="First Name"></ion-input>
+
+        <div class="error-container">
+          <ng-container *ngFor="let validation of validations.firstName">
+            <div
+              class="error-message"
+              *ngIf="registerForm.get('firstName')?.hasError(validation.type) && (registerForm.get('firstName')?.dirty || registerForm.get('firstName')?.touched)">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>{{ validation.message }}</span>
+            </div>
+          </ng-container>
+        </div>
       </div>
-      <div class="last-name">
+
+      <div class="last-name ion-margin-top">
         <ion-label>Last Name</ion-label>
         <ion-input
+          formControlName="lastName"
           mode="md"
           color="primary"
           fill="outline"
           shape="round"
           aria-label="Last Name"
-          placeholder="Last Name"
-          class="ion-margin-bottom"></ion-input>
+          placeholder="Last Name"></ion-input>
+        <div class="error-container">
+          <ng-container *ngFor="let validation of validations.lastName">
+            <div
+              class="error-message"
+              *ngIf="registerForm.get('lastName')?.hasError(validation.type) && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched)">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>{{ validation.message }}</span>
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
 
-    <ion-label>Date Of Birth</ion-label>
-    <ion-item class="ion-margin-bottom">
-      <ion-input
-        readonly
-        id="dob"
-        [value]="dateOfBirth | date :'dd MMMM, yyyy'"
-        mode="md"
-        color="primary"
-        fill="outline"
-        shape="round"
-        aria-label="Date of birth"
-        placeholder="Date of birth"></ion-input>
-      <ion-icon slot="end" name="calendar"></ion-icon>
-    </ion-item>
+    <div class="ion-margin-top">
+      <ion-label>Date Of Birth</ion-label>
+      <ion-item>
+        <ion-input
+          readonly
+          id="dob"
+          [value]="dateOfBirth | date :'dd MMMM, yyyy'"
+          mode="md"
+          color="primary"
+          fill="outline"
+          shape="round"
+          aria-label="Date of birth"
+          placeholder="Date of birth"></ion-input>
+        <ion-icon slot="end" name="calendar"></ion-icon>
+      </ion-item>
+    </div>
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validations.date_of_birth">
+        <div
+          class="error-message"
+          *ngIf="registerForm.get('date_of_birth')?.hasError(validation.type) && (registerForm.get('date_of_birth')?.dirty || registerForm.get('date_of_birth')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </div>
+
     <ion-modal class="date-modal" trigger="dob"
       [backdropDismiss]="false">
       <ng-template>
         <ion-datetime #calendar presentation="date"
-          formControlName="dateOfBirth"
+          formControlName="date_of_birth"
           (ionChange)="dateOfBirth = calendar.value"
           [max]="dateOptions.max"
-          [value]="registerForm.get('dateOfBirth')?.value"
+          [value]="registerForm.get('date_of_birth')?.value"
           [showDefaultButtons]="true">
         </ion-datetime>
       </ng-template>
     </ion-modal>
-    <ion-label>Gender</ion-label>
-    <ion-select
-      class="ion-margin-bottom"
-      aria-label="gender"
-      placeholder="Gender"
-      toggleIcon="chevron-down"
-      expandedIcon="chevron-up">
-      <ion-select-option value="male">Male</ion-select-option>
-      <ion-select-option value="female">Female</ion-select-option>
-    </ion-select>
+    <div class="ion-margin-top">
+      <ion-label>Gender</ion-label>
+      <ion-select
+        formControlName="gender"
+        aria-label="gender"
+        placeholder="Gender"
+        toggleIcon="chevron-down"
+        expandedIcon="chevron-up">
+        <ion-select-option value="male">Male</ion-select-option>
+        <ion-select-option value="female">Female</ion-select-option>
+      </ion-select>
+    </div>
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validations.gender">
+        <div
+          class="error-message"
+          *ngIf="registerForm.get('gender')?.hasError(validation.type) && (registerForm.get('gender')?.dirty || registerForm.get('gender')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </div>
 
-    <ion-label>Phone Number</ion-label>
-    <ion-item class="ion-margin-bottom" lines="none">
+    <div class="ion-margin-top">
+      <ion-label>Phone Number</ion-label>
+      <ion-item lines="none">
+        <ion-input
+          formControlName="phone_number"
+          mode="md"
+          color="primary"
+          fill="outline"
+          shape="round"
+          type="tel"
+          aria-label="Phone Number"
+          placeholder="+27 12 213 123"></ion-input>
+        <ion-avatar slot="start">
+          <img src="./assets/images/SA-flag.png" />
+        </ion-avatar>
+        <!-- <ion-avatar slot="start" src="./assets/images/SA-flag.png">
+        </ion-avatar> -->
+      </ion-item>
+    </div>
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validations.phone_number">
+        <div
+          class="error-message"
+          *ngIf="registerForm.get('phone_number')?.hasError(validation.type) && (registerForm.get('phone_number')?.dirty || registerForm.get('phone_number')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="ion-margin-top">
+
+      <ion-label>Email</ion-label>
       <ion-input
+        formControlName="email"
         mode="md"
         color="primary"
         fill="outline"
         shape="round"
-        type="tel"
-        aria-label="Phone Number"
-        placeholder="+27 12 213 123"></ion-input>
-      <ion-avatar slot="start">
-        <img src="./assets/images/SA-flag.png" />
-      </ion-avatar>
-      <!-- <ion-avatar slot="start" src="./assets/images/SA-flag.png">
-      </ion-avatar> -->
-    </ion-item>
+        aria-label="Email"
+        placeholder="Email"
+        class="ion-margin-bottom"></ion-input>
+    </div>
 
-    <ion-label>Email</ion-label>
-    <ion-input
-      mode="md"
-      color="primary"
-      fill="outline"
-      shape="round"
-      aria-label="Email"
-      placeholder="Email"
-      class="ion-margin-bottom"></ion-input>
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validations.email">
+        <div
+          class="error-message"
+          *ngIf="registerForm.get('email')?.hasError(validation.type) && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </div>
 
-    <ion-label>Password</ion-label>
-    <ion-input
-      mode="md"
-      color="primary"
-      fill="outline"
-      shape="round"
-      aria-label="Password"
-      placeholder="password"
-      type="password"
-      class="ion-margin-bottom"></ion-input>
+    <div class="ion-margin-top">
 
-    <ion-button type="submit" (click)="null" expand="full" fill="solid"
+      <ion-label>Password</ion-label>
+      <ion-input
+        formControlName="password"
+        mode="md"
+        color="primary"
+        fill="outline"
+        shape="round"
+        aria-label="Password"
+        placeholder="password"
+        type="password"></ion-input>
+    </div>
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validations.password">
+        <div
+          class="error-message"
+          *ngIf="registerForm.get('password')?.hasError(validation.type) && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="ion-margin-top">
+      <ion-label>Confirm Password</ion-label>
+      <ion-input
+        formControlName="confirmPassword"
+        mode="md"
+        color="primary"
+        fill="outline"
+        shape="round"
+        aria-label="Password"
+        placeholder="password"
+        type="password"></ion-input>
+    </div>
+
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validations.confirmPassword">
+        <div
+          class="error-message"
+          *ngIf="registerForm.get('confirmPassword')?.hasError(validation.type) && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-button class="ion-margin-top" type="submit" (click)="null"
+      expand="full" fill="solid"
       shape="round">
       Sign Up
     </ion-button>
