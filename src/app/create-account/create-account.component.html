@@ -123,6 +123,31 @@
     </div>
 
     <div class="ion-margin-top">
+      <ion-label>Company Name</ion-label>
+      <ion-item lines="none">
+        <ion-input
+          formControlName="company_name"
+          mode="md"
+          color="primary"
+          fill="outline"
+          shape="round"
+          type="text"
+          aria-label="company name"
+          placeholder="company name"></ion-input>
+      </ion-item>
+    </div>
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validations.company_name">
+        <div
+          class="error-message"
+          *ngIf="registerForm.get('company_name')?.hasError(validation.type) && (registerForm.get('company_name')?.dirty || registerForm.get('company_name')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="ion-margin-top">
       <ion-label>Phone Number</ion-label>
       <ion-item lines="none">
         <ion-input
@@ -158,12 +183,12 @@
       <ion-input
         formControlName="email"
         mode="md"
+        type="email"
         color="primary"
         fill="outline"
         shape="round"
         aria-label="Email"
-        placeholder="Email"
-        class="ion-margin-bottom"></ion-input>
+        placeholder="Email"></ion-input>
     </div>
 
     <div class="error-container">
@@ -225,10 +250,12 @@
       </ng-container>
     </div>
 
-    <ion-button class="ion-margin-top" type="submit" (click)="null"
+    <ion-button [disabled]="loading" class="ion-margin-top" type="submit"
+      (click)="null"
       expand="full" fill="solid"
       shape="round">
-      Sign Up
+      {{ loading ? '' : 'Sign Up'}}
+      <ion-spinner *ngIf="loading" slot="icon-only" name="dots"></ion-spinner>
     </ion-button>
 
   </form>
