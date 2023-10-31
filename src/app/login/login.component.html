@@ -9,38 +9,66 @@
     <div class="welcome ion-margin-bottom">Welcome to JVApp</div>
 
     <form [formGroup]="loginForm" (submit)="login() ">
+      <fieldset [disabled]="isLoginIn">
 
-      <ion-label>Email/Phone Number</ion-label>
-      <ion-input
-        formControlName="emailNumber"
-        mode="ios"
-        type="text"
-        aria-label="Email/Phone Number"
-        placeholder="Email or Phone Number"
-        class="ion-margin-vertical"></ion-input>
-      <ion-label>Password</ion-label>
-      <ion-input
-        formControlName="password"
-        mode="ios"
-        aria-label="Password"
-        placeholder="password"
-        type="password"
-        class="ion-margin-vertical"></ion-input>
+        <div class="email-container ion-margin-vertical">
+          <ion-label>Email</ion-label>
+          <ion-input
+            formControlName="email"
+            mode="ios"
+            type="email"
+            aria-label="Email"
+            placeholder="Email"></ion-input>
+          <div class="error-container">
+            <ng-container *ngFor="let validation of validations.email">
+              <div
+                class="error-message"
+                *ngIf="loginForm.get('email')?.hasError(validation.type) && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+                <ion-icon name="information-circle-outline"></ion-icon>
+                <span>{{ validation.message }}</span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
 
-      <div class="extra">
-        <ion-checkbox mode="ios" labelPlacement="end">Remember Me</ion-checkbox>
-        <a>Forgot Password?</a>
-      </div>
+        <div class="email-container ion-margin-vertical">
 
-      <ion-button mode="ios" type="submit" expand="block"
-        fill="solid"
-        shape="round">
-        Login
-      </ion-button>
+          <ion-label>Password</ion-label>
+          <ion-input
+            formControlName="password"
+            mode="ios"
+            aria-label="Password"
+            placeholder="password"
+            type="password"></ion-input>
+          <div class="error-container">
+            <ng-container *ngFor="let validation of validations.password">
+              <div
+                class="error-message"
+                *ngIf="loginForm.get('password')?.hasError(validation.type) && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                <ion-icon name="information-circle-outline"></ion-icon>
+                <span>{{ validation.message }}</span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
 
-      <p class="create-account">Don't have an account? <a
-          (click)="createAccount()"> Create an account.
-        </a> </p>
+        <!-- <div class="extra">
+          <ion-checkbox mode="ios" labelPlacement="end">Remember Me</ion-checkbox>
+          <a>Forgot Password?</a>
+        </div> -->
+
+        <ion-button [disabled]="isLoginIn" mode="ios" type="submit"
+          expand="block"
+          fill="solid"
+          shape="round">
+          {{ isLoginIn ? '' : 'Login'}}
+          <ion-spinner *ngIf="isLoginIn" name="dots" color="light"></ion-spinner>
+        </ion-button>
+      </fieldset>
+
     </form>
+    <p class="create-account">Don't have an account? <a
+        (click)="createAccount()"> Create an account.
+      </a> </p>
   </div>
 </ion-content>

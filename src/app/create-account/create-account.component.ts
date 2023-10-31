@@ -132,7 +132,7 @@ export class CreateAccountComponent implements OnInit {
         ).subscribe()
     } else {
       // show error
-      this.toastSrv.presentToastWithOptions('Please fill in all fields.')
+      this.toastSrv.presentToastWithOptions('Please fill in all fields.');
     }
   }
 
