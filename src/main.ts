@@ -1,14 +1,16 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { APP_INITIALIZER, enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter, withComponentInputBinding } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage-angular';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
+import { StorageService, initializeStorage } from './app/services/storage.service';
 import { httpInterceptor } from './app/shared/interceptors/http.interceptor';
 import { CartEffects, cartReducer } from './app/shared/store/inventory';
 import { environment } from './environments/environment';
@@ -20,9 +22,16 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    importProvidersFrom(IonicModule.forRoot({})),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeStorage,
+      deps: [StorageService],
+      multi: true
+    },
+    importProvidersFrom(IonicModule.forRoot({}), IonicStorageModule.forRoot()),
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(
+      withInterceptorsFromDi(),
       withInterceptors([httpInterceptor])
     ),
     provideEffects([CartEffects]),
