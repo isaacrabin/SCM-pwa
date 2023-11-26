@@ -2,11 +2,15 @@ import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { BarcodeScannerComponent } from 'src/app/barcode-scanner/barcode-scanner.component';
 import { ItemsService } from 'src/app/services/items.service';
 import { PosService } from 'src/app/services/pos.service';
 import { PosProduct } from 'src/app/shared/interfaces/get-pos-products';
+import { AppState } from 'src/app/shared/interfaces/states.interface';
+import { PosCartItem } from 'src/app/shared/store/pos/pos-cart.model';
+import * as PosCartActions from '../../shared/store/pos/pos-cart.actions';
 
 
 @Component({
@@ -48,7 +52,8 @@ export class PosHomeComponent implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private getItemsService: ItemsService,
-    private posService: PosService
+    private posService: PosService,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
@@ -65,6 +70,16 @@ export class PosHomeComponent implements OnInit {
       component: BarcodeScannerComponent,
     })
     return modal.present();
+  }
+
+  onAddToCart(item: PosProduct) {
+    const cartItem: PosCartItem = {
+      item_id: item.item_id,
+      item_name: item.item_name,
+      quantity: 1,
+      price: item.price
+    }
+    this.store.dispatch(PosCartActions.addItem({ item: cartItem }))
   }
 
 }

@@ -79,7 +79,7 @@
             <div class="card-content">
               <div class="buttons">
                 <ion-button size="small" fill="clear"
-                  (click)="null">
+                  (click)="onAddToCart(item); $event.stopPropagation()">
                   <ion-icon slot="icon-only" name="cart"></ion-icon>
                 </ion-button>
               </div>

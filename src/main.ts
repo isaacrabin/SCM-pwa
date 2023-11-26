@@ -13,6 +13,7 @@ import { routes } from './app/app.routes';
 import { StorageService, initializeStorage } from './app/services/storage.service';
 import { httpInterceptor } from './app/shared/interceptors/http.interceptor';
 import { CartEffects, cartReducer } from './app/shared/store/inventory';
+import { PosCartReducer } from './app/shared/store/pos/pos-cart-reducers';
 import { environment } from './environments/environment';
 
 if (environment.production) {
@@ -35,7 +36,7 @@ bootstrapApplication(AppComponent, {
       withInterceptors([httpInterceptor])
     ),
     provideEffects([CartEffects]),
-    provideStore({ inventory: cartReducer }),
+    provideStore({ inventory: cartReducer, pos: PosCartReducer }),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       logOnly: !environment.production, // Restrict extension to log-only mode
