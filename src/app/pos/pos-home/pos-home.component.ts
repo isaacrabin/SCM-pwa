@@ -1,9 +1,12 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { map } from 'rxjs';
 import { BarcodeScannerComponent } from 'src/app/barcode-scanner/barcode-scanner.component';
 import { ItemsService } from 'src/app/services/items.service';
+import { PosService } from 'src/app/services/pos.service';
+import { PosProduct } from 'src/app/shared/interfaces/get-pos-products';
 
 
 @Component({
@@ -11,9 +14,11 @@ import { ItemsService } from 'src/app/services/items.service';
   selector: 'app-pos-home',
   templateUrl: './pos-home.component.html',
   styleUrls: ['./pos-home.component.scss'],
-  imports: [IonicModule, NgFor, AsyncPipe, NgIf]
+  imports: [IonicModule, NgFor, AsyncPipe, NgIf, JsonPipe]
 })
 export class PosHomeComponent implements OnInit {
+
+  private router = inject(Router);
 
   items$ = this.getItemsService.fetchAllItems()
     .pipe(
@@ -38,26 +43,27 @@ export class PosHomeComponent implements OnInit {
       })
     )
 
+  products$ = this.posService.fetchPosProducts()
+
   constructor(
     private modalCtrl: ModalController,
-    private getItemsService: ItemsService
+    private getItemsService: ItemsService,
+    private posService: PosService
   ) { }
 
-  images = [
-    'yellow-phone',
-    'smart-phone',
-    'watch',
-    'macbook',
-  ]
-
   ngOnInit() {
+  }
+
+  onCardClick(item: PosProduct) {
+    this.router.navigateByUrl(`/pos/item/${item.item_name}`, {
+      state: item
+    })
   }
 
   async scanCode() {
     const modal = await this.modalCtrl.create({
       component: BarcodeScannerComponent,
     })
-
     return modal.present();
   }
 

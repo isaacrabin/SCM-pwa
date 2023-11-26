@@ -69,7 +69,35 @@
         </ion-col>
       </ng-container> -->
 
-      <ng-container *ngIf="(items$ | async) as items; else loading">
+      <ng-container *ngIf="(products$ | async) as items;else loading">
+        <ion-col *ngFor="let item of items" size="6" size-md="4">
+          <ion-card class="card ion-no-margin" (click)="onCardClick(item)">
+            <div class="image-container">
+              <img [alt]="item.name"
+                [src]="'./assets/images/no-image.svg'" />
+            </div>
+            <div class="card-content">
+              <div class="buttons">
+                <ion-button size="small" fill="clear"
+                  (click)="null">
+                  <ion-icon slot="icon-only" name="cart"></ion-icon>
+                </ion-button>
+              </div>
+              <div class="price">
+                <p class="whole"> {{item.price}}</p>
+                <div class="cent-denomination">
+                  <div class="cents">.{{ '00' }}</div>
+                  <div class="denomination">ZAR</div>
+                </div>
+              </div>
+              <p class="product-name">
+                {{item.item_name}}
+              </p>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ng-container>
+      <!-- <ng-container *ngIf="(items$ | async) as items; else loading">
         <ion-col *ngFor="let item of items" size="6" size-md="4">
           <ion-card class="card ion-no-margin">
             <div class="image-container">
@@ -96,7 +124,7 @@
             </div>
           </ion-card>
         </ion-col>
-      </ng-container>
+      </ng-container> -->
       <ng-template #loading>
         Loading...
       </ng-template>
