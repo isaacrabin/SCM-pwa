@@ -5,6 +5,10 @@ const posRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('./pos/pos-home/pos-home.component').then(m => m.PosHomeComponent)
+  },
+  {
+    path: 'item/:id',
+    loadComponent: () => import('./view-item-pos/view-item-pos.component').then(m => m.ViewItemPosComponent)
   }
 ]
 const dashboardRoutes: Routes = [

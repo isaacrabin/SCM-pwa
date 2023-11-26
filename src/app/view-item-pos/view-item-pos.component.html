@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text color="dark" defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{item.item_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="image-container">
+    <img
+      [src]="'./assets/images/no-image.svg'"
+      [alt]="item.item_name">
+  </div>
+  <div class="item-info ion-padding ion-text-center">
+
+    <p class="item-info__name">{{item.item_name}}</p>
+    <p class="item-info__price">ZAR. {{item.price}}</p>
+
+  </div>
+</ion-content>

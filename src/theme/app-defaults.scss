@@ -26,3 +26,17 @@ ion-modal.auto-height {
     }
   }
 }
+
+.image-container {
+  height: 200px;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  justify-content: center;
+
+  img {
+    max-width: max(100%, 200px);
+    object-fit: cover;
+  }
+}
