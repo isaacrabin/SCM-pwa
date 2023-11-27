@@ -38,38 +38,8 @@
 
   <ion-grid fixed class>
     <ion-row>
-      <!-- <ng-container *ngFor="let i of [].constructor(3)">
-        <ion-col *ngFor="let image of images" size="6" size-md="4">
-          <ion-card class="card ion-no-margin">
-            <div class="image-container">
-              <img alt="Silhouette of mountains"
-                [src]="'./assets/images/'+ image + '.jpeg'" />
-            </div>
-            <div class="card-content">
-              <div class="buttons">
-                <ion-button size="small" fill="clear" (click)="null">
-                  <ion-icon slot="icon-only" name="cart"></ion-icon>
-                </ion-button>
-              </div>
-              <div class="price">
-                <p class="whole"> 89</p>
-                <div class="cent-denomination">
-                  <div class="cents">.00</div>
-                  <div class="denomination">ZAR</div>
-                </div>
-              </div>
-              <p class="product-name">
-                Pure Olive Oil and some reaally long text that is
-                not relevant, it just for testiing the clamping of text
-              </p>
-            </div>
-            <div class="info">
-            </div>
-          </ion-card>
-        </ion-col>
-      </ng-container> -->
-
-      <ng-container *ngIf="(products$ | async) as items;else loading">
+      <ng-container
+        *ngIf="(itemsWithQuantity$ | async) as items;else loading">
         <ion-col *ngFor="let item of items" size="6" size-md="4">
           <ion-card class="card ion-no-margin" (click)="onCardClick(item)">
             <div class="image-container">
@@ -78,11 +48,50 @@
             </div>
             <div class="card-content">
               <div class="buttons">
-                <ion-button size="small" fill="clear"
-                  (click)="onAddToCart(item); $event.stopPropagation()">
-                  <ion-icon slot="icon-only" name="cart"></ion-icon>
-                </ion-button>
+
+                <ng-container *ngIf="item.quantityInCart > 0">
+                  <ion-buttons>
+                    <ion-button
+                      *ngIf="item.quantityInCart === 1; else reduceItems"
+                      slot="start"
+                      (click)="reduceFromCart(item); $event.stopPropagation()"
+                      fill="clear"
+                      color="danger">
+                      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                    </ion-button>
+                    <strong>
+                      <p>
+                        {{item.quantityInCart}}
+                      </p>
+                    </strong>
+
+                    <ng-template #reduceItems>
+                      <ion-button slot="start" color="primary"
+                        (click)="reduceFromCart(item); $event.stopPropagation()">
+                        <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+                      </ion-button>
+
+                    </ng-template>
+
+                    <ion-button slot="end" color="primary"
+                      (click)="addToCart(item); $event.stopPropagation()">
+                      <ion-icon slot="icon-only" name="add"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ng-container>
+                <ng-container *ngIf="item.quantityInCart === 0">
+                  <ion-buttons>
+                    <ion-button size="small" color="primary" fill="clear"
+                      (click)="addToCart(item); $event.stopPropagation()">
+                      <ion-icon slot="icon-only" name="cart"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ng-container>
+
               </div>
+
+              <!-- <app-pos-card-cart-buttons [item]="item"
+                (addToCart)="addToCart(item)"></app-pos-card-cart-buttons> -->
               <div class="price">
                 <p class="whole"> {{item.price}}</p>
                 <div class="cent-denomination">
@@ -97,34 +106,6 @@
           </ion-card>
         </ion-col>
       </ng-container>
-      <!-- <ng-container *ngIf="(items$ | async) as items; else loading">
-        <ion-col *ngFor="let item of items" size="6" size-md="4">
-          <ion-card class="card ion-no-margin">
-            <div class="image-container">
-              <img [alt]="item.name"
-                [src]="item.image ?? './assets/images/no-image.svg'" />
-            </div>
-            <div class="card-content">
-              <div class="buttons">
-                <ion-button size="small" fill="clear" (click)="null">
-                  <ion-icon slot="icon-only" name="cart"></ion-icon>
-                </ion-button>
-              </div>
-              <div class="price">
-                <p class="whole"> {{item.price.whole}}</p>
-                <div class="cent-denomination">
-                  <div class="cents">.{{item.price.cents === 0 ? '00' :
-                    item.price.cents}}</div>
-                  <div class="denomination">ZAR</div>
-                </div>
-              </div>
-              <p class="product-name">
-                {{item.name}}
-              </p>
-            </div>
-          </ion-card>
-        </ion-col>
-      </ng-container> -->
       <ng-template #loading>
         Loading...
       </ng-template>

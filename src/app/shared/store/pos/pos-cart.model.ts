@@ -10,6 +10,7 @@ export interface Data {
 }
 
 export interface PosCartState {
+  isCheckingOut: boolean;
   date: string;
   customer_id: string;
   amount: number;

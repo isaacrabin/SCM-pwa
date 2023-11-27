@@ -6,7 +6,8 @@ export const initialPosCartState: PosCartState = {
   date: (new Date()).toISOString(),
   customer_id: '',
   amount: 0,
-  items: []
+  items: [],
+  isCheckingOut: false
 }
 
 export const PosCartReducer = createReducer(
