@@ -43,5 +43,34 @@ export const PosCartReducer = createReducer(
       items: newItems,
       amount: state.amount + (item.price * item.quantity)
     }
-  })
+  }),
+
+  on(PosCartActions.reduceItem, (state, { itemId }) => {
+    const itemIndex = state.items.findIndex(item => item.item_id === itemId);
+    let updatedItems = [...state.items]; // create a copy
+
+    if (itemIndex > -1) {
+      const currentItem = state.items[itemIndex];
+      if (currentItem.quantity > 1) {
+        // Decrement the quantity
+        const updatedItem: PosCartItem = {
+          ...currentItem,
+          quantity: currentItem.quantity - 1
+        };
+        updatedItems[itemIndex] = updatedItem;
+      } else {
+        // Remove the item from the cart when its quantity reaches zero
+        updatedItems = updatedItems.filter(item => item.item_name !== itemId);
+      }
+    }
+
+    const updatedTotalItems = updatedItems.reduce((acc, item) => acc + item.quantity, 0);
+    const updatedTotalPrice = updatedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+    return {
+      ...state,
+      items: updatedItems,
+      amount: updatedTotalPrice
+    };
+  }),
 )

@@ -79,7 +79,7 @@ export class PosHomeComponent implements OnInit {
   }
 
   reduceFromCart(item: PosProduct) {
-    console.log('reduce or remove from cart');
+    this.store.dispatch(PosCartActions.reduceItem({ itemId: item.item_id }))
   }
 
 }
