@@ -10,6 +10,8 @@ import * as CartActions from '../shared/store/inventory/cart.actions';
 import * as CartSelectors from '../shared/store/inventory/cart.selector';
 import { CartItem } from './../shared/store/inventory/cart.model';
 
+// TODO: refactor to be a reusable component
+
 @Component({
   standalone: true,
   selector: 'app-restock-cart',

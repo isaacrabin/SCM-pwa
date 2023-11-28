@@ -60,7 +60,7 @@ export const PosCartReducer = createReducer(
         updatedItems[itemIndex] = updatedItem;
       } else {
         // Remove the item from the cart when its quantity reaches zero
-        updatedItems = updatedItems.filter(item => item.item_name !== itemId);
+        updatedItems = updatedItems.filter(item => item.item_id !== itemId);
       }
     }
 
@@ -86,5 +86,14 @@ export const PosCartReducer = createReducer(
   }),
 
   on(PosCartActions.clearCart, state => initialPosCartState),
+
+  on(PosCartActions.checkoutStart, (state) => ({
+    ...state,
+    isCheckingOut: true
+  })),
+  on(PosCartActions.checkoutComplete, (state) => ({
+    ...state,
+    isCheckingOut: false
+  }))
 
 )

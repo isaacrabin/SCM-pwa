@@ -59,11 +59,12 @@
                       color="danger">
                       <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
                     </ion-button>
-                    <strong>
+                    <!-- <strong>
                       <p>
                         {{item.quantityInCart}}
                       </p>
-                    </strong>
+                    </strong> -->
+                    <ion-badge color="secondary">{{item.quantityInCart}}</ion-badge>
 
                     <ng-template #reduceItems>
                       <ion-button slot="start" color="primary"
@@ -112,5 +113,15 @@
 
     </ion-row>
   </ion-grid>
+
+  <ng-container *ngIf="(cartItems$ | async) as items">
+    <ion-fab *ngIf="items.totalItems " (click)="viewCart()"
+      slot="fixed" horizontal="start" vertical="bottom">
+      <ion-fab-button color="tertiary">
+        <ion-icon name="cart" color="light"></ion-icon>
+      </ion-fab-button>
+      <ion-badge color="secondary">{{items.totalItems}}</ion-badge>
+    </ion-fab>
+  </ng-container>
 
 </ion-content>

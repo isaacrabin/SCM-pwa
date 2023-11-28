@@ -9,6 +9,10 @@ const posRoutes: Routes = [
   {
     path: 'item/:id',
     loadComponent: () => import('./view-item-pos/view-item-pos.component').then(m => m.ViewItemPosComponent)
+  },
+  {
+    path: 'checkout',
+    loadComponent: () => import('./base-pos-checkout/base-pos-checkout.component').then(m => m.BasePosCheckoutComponent)
   }
 ]
 const dashboardRoutes: Routes = [

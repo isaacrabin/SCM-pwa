@@ -25,7 +25,15 @@ export class PosHomeComponent implements OnInit {
 
   private router = inject(Router);
 
-  products$ = this.posService.fetchPosProducts()
+  products$ = this.posService.fetchPosProducts();
+  cartItems$ = this.store.select(PosCartSelectors.selectCartItems)
+    .pipe(map(res => {
+      const totalItems = res.items.reduce((acc, item) => acc + item.quantity, 0);
+      return {
+        ...res,
+        totalItems
+      }
+    }))
 
   itemsWithQuantity$ = this.products$.pipe(
     switchMap(items =>
@@ -84,6 +92,10 @@ export class PosHomeComponent implements OnInit {
 
   removeFromCart(item: PosProduct) {
     this.store.dispatch(PosCartActions.removeItem({ itemId: item.item_id }))
+  }
+
+  viewCart() {
+    this.router.navigateByUrl('/pos/checkout')
   }
 
 }
