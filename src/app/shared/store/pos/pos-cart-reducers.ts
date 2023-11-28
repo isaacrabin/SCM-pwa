@@ -64,7 +64,6 @@ export const PosCartReducer = createReducer(
       }
     }
 
-    const updatedTotalItems = updatedItems.reduce((acc, item) => acc + item.quantity, 0);
     const updatedTotalPrice = updatedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
     return {
@@ -73,4 +72,19 @@ export const PosCartReducer = createReducer(
       amount: updatedTotalPrice
     };
   }),
+
+  on(PosCartActions.removeItem, (state, { itemId }) => {
+    const updatedItems = state.items.filter(item => item.item_id !== itemId);
+
+    const updatedTotalPrice = updatedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+    return {
+      ...state,
+      items: updatedItems,
+      amount: updatedTotalPrice
+    };
+  }),
+
+  on(PosCartActions.clearCart, state => initialPosCartState),
+
 )

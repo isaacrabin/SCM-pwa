@@ -82,4 +82,8 @@ export class PosHomeComponent implements OnInit {
     this.store.dispatch(PosCartActions.reduceItem({ itemId: item.item_id }))
   }
 
+  removeFromCart(item: PosProduct) {
+    this.store.dispatch(PosCartActions.removeItem({ itemId: item.item_id }))
+  }
+
 }

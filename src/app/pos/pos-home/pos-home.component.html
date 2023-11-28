@@ -54,7 +54,7 @@
                     <ion-button
                       *ngIf="item.quantityInCart === 1; else reduceItems"
                       slot="start"
-                      (click)="reduceFromCart(item); $event.stopPropagation()"
+                      (click)="removeFromCart(item); $event.stopPropagation()"
                       fill="clear"
                       color="danger">
                       <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
