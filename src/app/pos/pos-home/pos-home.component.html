@@ -2,7 +2,7 @@
   <ion-toolbar>
     <!-- <ion-title>Point of Sale</ion-title> -->
     <ion-buttons slot="start">
-      <ion-button (click)="null" color="dark">
+      <ion-button (click)="openMenu()" color="dark">
         <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -69,14 +69,17 @@
                     <ng-template #reduceItems>
                       <ion-button slot="start" color="primary"
                         (click)="reduceFromCart(item); $event.stopPropagation()">
-                        <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+                        <ion-icon slot="icon-only"
+                          style="--ionicon-stroke-width: 70px;"
+                          name="remove-outline"></ion-icon>
                       </ion-button>
 
                     </ng-template>
 
                     <ion-button slot="end" color="primary"
                       (click)="addToCart(item); $event.stopPropagation()">
-                      <ion-icon slot="icon-only" name="add"></ion-icon>
+                      <ion-icon slot="icon-only"
+                        style="--ionicon-stroke-width: 70px;" name="add"></ion-icon>
                     </ion-button>
                   </ion-buttons>
                 </ng-container>

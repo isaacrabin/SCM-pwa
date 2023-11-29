@@ -1,7 +1,7 @@
 import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, map, switchMap } from 'rxjs';
 import { BarcodeScannerComponent } from 'src/app/barcode-scanner/barcode-scanner.component';
@@ -57,6 +57,7 @@ export class PosHomeComponent implements OnInit {
     private modalCtrl: ModalController,
     private getItemsService: ItemsService,
     private posService: PosService,
+    private menuCtrl: MenuController,
     private store: Store<AppState>
   ) { }
 
@@ -98,4 +99,7 @@ export class PosHomeComponent implements OnInit {
     this.router.navigateByUrl('/pos/checkout')
   }
 
+  openMenu() {
+    this.menuCtrl.open();
+  }
 }

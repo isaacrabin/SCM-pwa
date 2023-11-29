@@ -13,15 +13,18 @@ import { SplashScreenComponent } from './splash-screen/splash-screen.component';
   imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule, SplashScreenComponent],
 })
 export class AppComponent {
-  public appPages = [
-    { title: 'Inbox', url: '/folder/inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/spam', icon: 'warning' },
+  public posPages = [
+    { title: 'Home', url: '/pos/', icon: 'home' },
+    { title: 'Cart', url: '/pos/checkout', icon: 'cart' },
+    { title: 'Sales', url: '/pos/sales', icon: 'cash' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+
+  dashboardPages = [
+    { title: 'Dashboard', url: '/dashboard/', icon: 'home' },
+    { title: 'Restock', url: '/dashboard/restock', icon: 'bar-chart' },
+  ]
+
   constructor() {
     register();
   }
