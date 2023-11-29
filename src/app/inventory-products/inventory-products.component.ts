@@ -1,7 +1,7 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
 import { AddProductOneComponent } from '../add-product-one/add-product-one.component';
@@ -42,7 +42,9 @@ export class InventoryProductsComponent implements OnInit {
     .pipe(tap(items => console.log('items: ', items)))
   // .subscribe()
 
-  constructor() { }
+  constructor(
+    private menuCtrl: MenuController
+  ) { }
 
   ngOnInit() {
   }
@@ -77,6 +79,10 @@ export class InventoryProductsComponent implements OnInit {
 
   viewCart() {
     this.router.navigateByUrl('/dashboard/restock')
+  }
+
+  openMenu() {
+    this.menuCtrl.open();
   }
 
 }

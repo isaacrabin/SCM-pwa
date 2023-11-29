@@ -9,9 +9,10 @@
 
 <ion-content>
   <div class="image-container">
-    <img
-      [src]="'./assets/images/no-image.svg'"
-      [alt]="item.item_name">
+    <img #img
+      [src]="item.item_image ?? './assets/images/no-image.svg'"
+      [alt]="item.item_name"
+      (error)="img.src = './assets/images/no-image.svg'">
   </div>
   <div class="item-info ion-padding ion-text-center">
 

@@ -17,4 +17,5 @@ export interface PosProduct {
   doctype: string;
   isInCart: boolean;
   quantityInCart: number;
+  item_image?: string;
 }

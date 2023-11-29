@@ -16,8 +16,9 @@
 
           <ion-item class="inventory-item">
             <ion-thumbnail slot="start">
-              <img [alt]="item.item_name"
-                [src]="'./assets/images/no-image.svg'" />
+              <img #img [alt]="item.item_name"
+                (error)="img.src = './assets/images/no-image.svg' "
+                [src]="item.item_image ?? './assets/images/no-image.svg'" />
             </ion-thumbnail>
             <ion-label> <h3>{{item.item_name}}</h3> <p>ZAR.
                 {{item.price}}</p>

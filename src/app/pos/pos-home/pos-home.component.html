@@ -43,8 +43,9 @@
         <ion-col *ngFor="let item of items" size="6" size-md="4">
           <ion-card class="card ion-no-margin" (click)="onCardClick(item)">
             <div class="image-container">
-              <img [alt]="item.name"
-                [src]="'./assets/images/no-image.svg'" />
+              <img [alt]="item.name" #img
+                [src]=" item.item_image ?? './assets/images/no-image.svg'"
+                (error)="img.src = './assets/images/no-image.svg'" />
             </div>
             <div class="card-content">
               <div class="buttons">

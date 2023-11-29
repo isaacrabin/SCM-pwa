@@ -14,12 +14,19 @@
         [routerLink]="['/dashboard/sale', sale.name]">
         <ion-label>
           <h2>{{sale.name}}</h2>
-          <p>{{sale.modified | date: 'dd MMM, yyyy' }}</p>
+          <p>{{sale.modified | date: 'dd MMM, yyyy h:mm a' }}</p>
         </ion-label>
       </ion-item>
     </ng-container>
     <ng-template #loadingSales>
-      Loading
+      <ion-item *ngFor="let item of [].constructor(15)">
+        <ion-label>
+          <h2>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h2>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </ion-label>
+      </ion-item>
     </ng-template>
 
   </ion-list>

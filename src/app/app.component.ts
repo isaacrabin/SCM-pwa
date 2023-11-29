@@ -21,7 +21,7 @@ export class AppComponent {
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   dashboardPages = [
-    { title: 'Dashboard', url: '/dashboard/', icon: 'home' },
+    { title: 'Inventory', url: '/dashboard/', icon: 'home' },
     { title: 'Restock', url: '/dashboard/restock', icon: 'bar-chart' },
   ]
 

@@ -23,6 +23,7 @@ import * as PosCartSelectors from '../../shared/store/pos/pos-cart.selector';
 })
 export class PosHomeComponent implements OnInit {
 
+
   private router = inject(Router);
 
   products$ = this.posService.fetchPosProducts();
@@ -82,7 +83,8 @@ export class PosHomeComponent implements OnInit {
       item_id: item.item_id,
       item_name: item.item_name,
       quantity: 1,
-      price: item.price
+      price: item.price,
+      item_image: item.item_image
     }
     this.store.dispatch(PosCartActions.addItem({ item: cartItem }))
   }
@@ -102,4 +104,5 @@ export class PosHomeComponent implements OnInit {
   openMenu() {
     this.menuCtrl.open();
   }
+
 }
