@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button text color="dark" defaultHref="/pos/sales"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sale - {{sale.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <div class="info ion-text-center ion-padding">
+
+      <h3 style="color: var(--ion-color-primary);">{{sale.name}}</h3>
+      <p size="12">{{sale.modified | date: 'dd MMM, yyyy h:mm a'}}</p>
+    </div>
+
+    <ion-item *ngFor="let item of sale.items" class="inventory-item">
+      <ion-thumbnail slot="start">
+        <img #img [alt]="item.item_name"
+          (error)="img.src = './assets/images/no-image.svg' "
+          [src]="item.item_image ?? './assets/images/no-image.svg'" />
+      </ion-thumbnail>
+      <ion-label> <h3>{{item.item_name}}</h3> <p>ZAR.
+          {{item.price}}</p>
+      </ion-label>
+
+      <p class="price" style="color: var(--ion-color-secondary)" slot="end">{{item.quantity}}
+      </p>
+    </ion-item>
+  </ion-list>
+
+  <div class="summary ion-padding">
+    <ion-row>
+      <ion-col class="title" size="6">Total Item(s)</ion-col>
+      <ion-col class="amount" size="6">{{sale.items.length}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="title" size="6">Price</ion-col>
+      <ion-col class="amount" size="6">ZAR {{sale.amount | number :
+        '1.2-2'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="title">Discount</ion-col>
+      <ion-col class="amount" size="6">ZAR 0</ion-col>
+
+      <!-- <ion-col class="amount" offset="4">
+            <ion-input
+              style="min-height: 36px;"
+              mode="md"
+              color="primary"
+              fill="outline"
+              shape="round"
+              aria-label="Discount"
+              placeholder="00"></ion-input>
+          </ion-col> -->
+    </ion-row>
+    <div class="dotted-line"></div>
+    <ion-row>
+      <ion-col class="title" size="6">Total Price</ion-col>
+      <ion-col class="amount" size="6">ZAR {{sale.amount| number :
+        '1.2-2'}}</ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>

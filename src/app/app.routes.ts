@@ -17,6 +17,10 @@ const posRoutes: Routes = [
   {
     path: 'sales',
     loadComponent: () => import('./sales/sales.component').then(m => m.SalesComponent)
+  },
+  {
+    path: 'sales/:id',
+    loadComponent: () => import('./view-sale/view-sale.component').then(m => m.ViewSaleComponent)
   }
 ]
 const dashboardRoutes: Routes = [

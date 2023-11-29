@@ -10,10 +10,12 @@
   <ion-list>
     <ng-container *ngIf="(sales$ | async) as sales; else loadingSales">
 
-      <ion-item *ngFor="let sale of sales" detail
-        [routerLink]="['/dashboard/sale', sale.name]">
+      <ion-item *ngFor="let sale of sales" detail (click)="viewSale(sale)"
+        [routerLink]="['/pos/sales', sale.name, sale]">
         <ion-label>
-          <h2>{{sale.name}}</h2>
+          <h2>{{sale.name}} <span style="color: var(--ion-color-secondary)"><strong>
+                ZAR: {{sale.amount}}</strong></span>
+          </h2>
           <p>{{sale.modified | date: 'dd MMM, yyyy h:mm a' }}</p>
         </ion-label>
       </ion-item>

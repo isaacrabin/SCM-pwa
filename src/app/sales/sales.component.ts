@@ -1,8 +1,9 @@
 import { AsyncPipe, DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { PosService } from '../services/pos.service';
+import { Sale } from '../shared/interfaces/sale.interface';
 
 @Component({
   standalone: true,
@@ -15,12 +16,19 @@ import { PosService } from '../services/pos.service';
 export class SalesComponent implements OnInit {
 
   posService = inject(PosService);
+  private router = inject(Router);
 
-  sales$ = this.posService.fetchPosProducts()
+  sales$ = this.posService.fetchAllSales()
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  viewSale(sale: Sale) {
+    this.router.navigateByUrl(`/pos/sales/${sale.name}`, {
+      state: sale
+    })
   }
 
 }

@@ -22,7 +22,11 @@ export class PosService {
     return this.http.post<{ data: PosCartCheckoutPayload }>(environment.BASE_URL + 'sellproduct', sellPayload,)
   }
 
-  fetchAllSales(): Observable<Sale> {
-    return this.http.get<Sale>(environment.BASE_URL + 'sales');
+  fetchAllSales(): Observable<Sale[]> {
+    return this.http.get<Sale[]>(environment.BASE_URL + 'sales');
   }
+
+  // fetchSaleDetails() {
+  //   return this.http.get<Sale>(environment.BASE_URL + 'sales/');
+  // }
 }

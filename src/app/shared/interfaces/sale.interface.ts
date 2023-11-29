@@ -25,6 +25,7 @@ export interface Item {
   idx: number;
   item_id: string;
   item_name: string;
+  item_image?: string;
   quantity: number;
   price: number;
   parent: string;
