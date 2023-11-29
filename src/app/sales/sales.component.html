@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button text color="dark" defaultHref="/pos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sales</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ng-container *ngIf="(sales$ | async) as sales; else loadingSales">
+
+      <ion-item *ngFor="let sale of sales" detail
+        [routerLink]="['/dashboard/sale', sale.name]">
+        <ion-label>
+          <h2>{{sale.name}}</h2>
+          <p>{{sale.modified | date: 'dd MMM, yyyy' }}</p>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+    <ng-template #loadingSales>
+      Loading
+    </ng-template>
+
+  </ion-list>
+</ion-content>
