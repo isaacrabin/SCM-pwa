@@ -1,0 +1,26 @@
+<ion-avatar mode="ios" slot="end" id="sheet-modal" style="padding: 5px;">
+  <img src="./assets/images/woman-avatar.png" />
+</ion-avatar>
+
+<!-- <ion-button id="sheet-modal">Click to open modal</ion-button> -->
+<ion-modal #modal
+  trigger="sheet-modal"
+  [initialBreakpoint]="0.25"
+  [breakpoints]="[0.25, 0.5]">
+  <ng-template>
+
+
+    <ion-content>
+      <ion-list>
+        <ion-item button (click)="logout()">
+          <ion-label>Logout</ion-label>
+        </ion-item>
+        <ion-item button (click)="cancelLogout()">
+          <ion-label>Cancel</ion-label>
+        </ion-item>
+        </ion-list>
+
+      <!-- <ion-button style="padding-top: 20px;" size="medium" type="submit" expand="block" shape="round">Logout</ion-button> -->
+    </ion-content>
+  </ng-template>
+</ion-modal>

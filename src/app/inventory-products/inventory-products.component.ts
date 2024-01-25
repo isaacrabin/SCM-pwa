@@ -11,13 +11,14 @@ import { ItemsService } from '../services/items.service';
 import { GetItemsResults } from '../shared/interfaces/get-items.interface';
 import { AppState } from '../shared/interfaces/states.interface';
 import { selectCartItems } from '../shared/store/inventory';
+import { UserInfoComponent } from '../shared/components/user-info/user-info.component';
 
 @Component({
   standalone: true,
   selector: 'app-inventory-products',
   templateUrl: './inventory-products.component.html',
   styleUrls: ['./inventory-products.component.scss'],
-  imports: [IonicModule, NgFor, NgIf, AsyncPipe, DashboardItemComponent]
+  imports: [IonicModule, NgFor, NgIf, AsyncPipe, DashboardItemComponent, UserInfoComponent]
 })
 export class InventoryProductsComponent implements OnInit {
 

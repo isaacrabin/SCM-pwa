@@ -35,7 +35,7 @@ export class AuthService {
   async logout() {
     sessionStorage.removeItem('token');
     await this.storageSrv.remove(['auth-token', 'token-expires-in']);
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/login');
   }
 
   isAuthorized(): boolean{

@@ -12,6 +12,7 @@ import { AppState } from 'src/app/shared/interfaces/states.interface';
 import { PosCartItem } from 'src/app/shared/store/pos/pos-cart.model';
 import * as PosCartActions from '../../shared/store/pos/pos-cart.actions';
 import * as PosCartSelectors from '../../shared/store/pos/pos-cart.selector';
+import { UserInfoComponent } from 'src/app/shared/components/user-info/user-info.component';
 
 
 @Component({
@@ -19,7 +20,7 @@ import * as PosCartSelectors from '../../shared/store/pos/pos-cart.selector';
   selector: 'app-pos-home',
   templateUrl: './pos-home.component.html',
   styleUrls: ['./pos-home.component.scss'],
-  imports: [IonicModule, NgFor, AsyncPipe, NgIf, JsonPipe]
+  imports: [IonicModule, NgFor, AsyncPipe, NgIf, JsonPipe, UserInfoComponent]
 })
 export class PosHomeComponent implements OnInit {
 
