@@ -29,10 +29,22 @@ export class AuthService {
   private async setSession(resp: LoginResponse) {
     await this.storageSrv.set('auth-token', resp.token);
     await this.storageSrv.set('token-expires-in', resp.expires_in);
+    await this.storageSrv.set('session-state', "active");
   }
 
   async logout() {
+    sessionStorage.removeItem('token');
     await this.storageSrv.remove(['auth-token', 'token-expires-in']);
     this.router.navigateByUrl('/');
+  }
+
+  isAuthorized(): boolean{
+   const tokenExists =  sessionStorage.getItem('token');
+    if(tokenExists){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }

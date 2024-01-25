@@ -8,6 +8,7 @@ import { BaseModalComponent } from '../base-modal/base-modal.component';
 import { CreateAccountComponent } from '../create-account/create-account.component';
 import { AuthService } from '../services/auth.service';
 import { ToastService } from '../services/toast.service';
+import { StorageService } from '../services/storage.service';
 @Component({
   standalone: true,
   selector: 'app-login',
@@ -33,7 +34,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toastCtrl: ToastController,
     private toastSrv: ToastService,
-    private authSrv: AuthService
+    private authSrv: AuthService,
+    private storageSrv: StorageService
   ) { }
 
   loginForm = this.fb.group({
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // this.createAccount();
+
   }
 
   async login() {
@@ -82,8 +85,8 @@ export class LoginComponent implements OnInit {
     this.authSrv.login({ email, password })
       .pipe(
         tap(resp => {
-          console.log('resp: ', resp);
           if (resp && resp.token) {
+            sessionStorage.setItem('token', resp.token);
             this.loginForm.reset()
             this.router.navigate(['./pos'])
           } else {

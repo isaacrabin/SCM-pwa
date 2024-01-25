@@ -12,9 +12,11 @@
                 shape="round">
               </ion-button> -->
       <p class="inventory">{{item.opening_stock}}</p>
-      <ion-button (click)="moreClicked()" fill="none" color="dark">
+      <!-- <ion-button (click)="moreClicked()" fill="none" color="dark">
         <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
-      </ion-button>
+      </ion-button> -->
+      <ion-button (click)="presentActionSheet()" fill="none" color="dark">  <ion-icon slot="end" name="ellipsis-vertical"></ion-icon></ion-button>
+
     </div>
   </ion-item>
 </ng-container>
@@ -40,3 +42,75 @@
     </ion-item>
   </ng-container>
 </ng-template>
+
+
+<ion-modal #modal [isOpen]="isModalOpen" (didDismiss)="closeModal()"
+class="auto-height bottom">
+<ng-template>
+  <div class="inner-content">
+    <ion-list lines="full">
+
+      <ion-list-header>
+        <ion-label>{{selectedItem}}</ion-label>
+        <ion-button (click)="closeModal()">
+          <ion-icon slot="icon-only" name="close" color="dark"></ion-icon>
+        </ion-button>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>
+          <ion-text color="primary">
+            <h3>
+              Update Product Information
+            </h3>
+          </ion-text>
+          <p><sub>All Changes are effective immediately</sub></p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-text color="primary">
+            <h3>
+              Inventory Management
+            </h3>
+          </ion-text>
+          <p><sub>
+              Manually adjust your current inventory and stock.
+            </sub></p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-text color="primary">
+            <h3>
+              Purchase History </h3>
+          </ion-text>
+          <p><sub>Check out the product purchase history, payments and dues.</sub></p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-text color="primary">
+            <h3>
+              Report </h3>
+          </ion-text>
+          <p><sub>Product sales and purchase reports.</sub></p>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-button class="ion-margin-horizontal ion-margin-bottom"
+      (click)="deleteItem()" expand="block"
+      fill="solid" shape="round"
+      color="danger">
+
+      {{ isLoading ? '' : 'Delete'}}
+      <ion-spinner *ngIf="isLoading" name="dots" color="light"></ion-spinner>
+    </ion-button>
+  </div>
+</ng-template>
+</ion-modal>

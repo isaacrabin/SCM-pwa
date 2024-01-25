@@ -25,14 +25,13 @@
 
     <ng-container *ngIf="(items$ | async) as items; else loadingOrError">
       <ng-container *ngFor="let item of items">
-        <app-dashboard-item (click)="viewItem(item)" [item]="item"
-          (more)="openModal(item.name)"></app-dashboard-item>
+        <app-dashboard-item [item]="item"
+          ></app-dashboard-item>
       </ng-container>
     </ng-container>
 
     <ng-template #loadingOrError>
       <app-dashboard-item></app-dashboard-item>
-
     </ng-template>
 
   </ion-list>
