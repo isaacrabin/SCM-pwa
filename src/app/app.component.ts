@@ -14,7 +14,8 @@ import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 })
 export class AppComponent {
   public posPages = [
-    { title: 'Home', url: '/pos/', icon: 'home' },
+    { title: 'Home', url: '/home/', icon: 'home' },
+    { title: 'POS', url: '/pos', icon: 'cart' },
     { title: 'Cart', url: '/pos/checkout', icon: 'cart' },
     { title: 'Sales', url: '/pos/sales', icon: 'cash' },
   ];

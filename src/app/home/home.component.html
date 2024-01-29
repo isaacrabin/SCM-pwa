@@ -1,0 +1,266 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title>Point of Sale</ion-title> -->
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()" color="dark">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <div class="pos-header">
+      <h3>Home</h3>
+    </div>
+
+    <ion-avatar slot="end">
+      <jv-user-info></jv-user-info>
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <h4 class="welcome ion-margin-bottom">Welcome, John Doe</h4>
+  </div>
+
+  <ion-grid fixed class>
+    <ion-row>
+      <ng-container
+       >
+        <ion-col  size="6" size-md="4">
+          <ion-card class="card ion-no-margin"  mode="ios" >
+            <div class="card-content">
+              <div class="card-top">
+                <ng-container >
+                  <ion-buttons>
+                    <ion-button size="small" color="secondary" fill="clear"                     >
+                      <ion-icon slot="icon-only" name="cart"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ng-container>
+                <ng-container >
+                  <ion-chip color="success">+100</ion-chip>
+                </ng-container>
+              </div>
+
+              <div class="price">
+                <div class="cents">SALES</div>
+              </div>
+              <div class="stat">
+                <p class="product-name">
+                  165K
+                 </p>
+              </div>
+
+            </div>
+          </ion-card>
+        </ion-col>
+
+        <ion-col  size="6" size-md="4">
+          <ion-card class="card ion-no-margin" mode="ios" style="background:#1194a6 ;">
+            <div class="card-content">
+              <div class="card-top">
+                <ng-container >
+                  <ion-buttons>
+                    <ion-button size="small" color="light" fill="clear"                     >
+                      <ion-icon slot="icon-only" name="cart"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ng-container>
+                <ng-container >
+                  <ion-chip color="success">+100</ion-chip>
+                </ng-container>
+              </div>
+
+              <div class="price">
+                <div class="cents">REVENUE</div>
+              </div>
+              <div class="stat">
+                <p class="product-name">
+                  165K
+                 </p>
+              </div>
+
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col  size="6" size-md="4">
+          <ion-card class="card ion-no-margin"  mode="ios">
+            <div class="card-content">
+              <div class="card-top">
+                <ng-container >
+                  <ion-buttons>
+                    <ion-button size="small" color="secondary" fill="clear" mode="ios"                     >
+                      <ion-icon slot="icon-only" name="cart"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ng-container>
+                <ng-container >
+                  <ion-chip color="success">+100</ion-chip>
+                </ng-container>
+              </div>
+
+              <div class="price">
+                <div class="cents">PRODUCTS</div>
+              </div>
+              <div class="stat">
+                <p class="product-name">
+                  165K
+                 </p>
+              </div>
+
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col  size="6" size-md="4">
+          <ion-card class="card ion-no-margin"  mode="ios">
+            <div class="card-content">
+              <div class="card-top">
+                <ng-container >
+                  <ion-buttons>
+                    <ion-button size="small" color="secondary" fill="clear"                     >
+                      <ion-icon slot="icon-only" name="people"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ng-container>
+                <ng-container >
+                  <ion-chip color="success">+100</ion-chip>
+                </ng-container>
+              </div>
+
+              <div class="price">
+                <div class="cents">CUSTOMERS</div>
+              </div>
+              <div class="stat">
+                <p class="product-name">
+                  165K
+                 </p>
+              </div>
+
+            </div>
+          </ion-card>
+        </ion-col>
+
+      </ng-container>
+      <ng-template #loading>
+        Loading...
+      </ng-template>
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-list-header style="margin-left: 10px;">
+    <ion-label style="font-weight: 600;">Quick Actions</ion-label>
+    <ion-buttons>
+      <ion-button color="dark" (click)="null" expand="block" fill="clear"
+        shape="round">
+        <ion-icon slot="icon-only" size="small" name="grid-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-list-header>
+
+
+  <ion-grid fixed class="">
+    <ion-row>
+      <ng-container>
+        <ion-col    *ngFor="let item of myServices; let i = index;" size="4" size-md="4">
+          <ion-card class="card ion-no-margin"  mode="ios" >
+            <div class="card-content">
+              <div class="service-icon">
+                <ng-container >
+                  <ion-buttons>
+                    <ion-button size="small" color="secondary" fill="clear"                     >
+                      <ion-icon slot="icon-only" [name]="item.icon"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ng-container>
+              </div>
+
+              <div class="service-name">
+                <div class="cents">{{item.name}}</div>
+              </div>
+
+            </div>
+          </ion-card>
+        </ion-col>
+
+
+
+      </ng-container>
+      <ng-template #loading>
+        Loading...
+      </ng-template>
+
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-list-header style="margin-left: 10px;">
+    <ion-label style="font-weight: 600;">Deliveries</ion-label>
+    <ion-buttons>
+      <ion-button color="dark" (click)="null" expand="block" fill="clear"
+        shape="round">
+        <ion-icon slot="icon-only" size="small" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-list-header>
+
+
+  <ion-grid fixed class="">
+    <ion-row>
+      <ng-container>
+        <ion-col    *ngFor="let item of deleiveries; let i = index;" size="12" size-md="4">
+          <ion-card class="card ion-no-margin"  mode="ios" >
+            <div class="delivery-content">
+              <div class="service-icon">
+                <ng-container >
+                  <ion-buttons>
+                    <ion-button size="small" color="secondary" fill="clear"                     >
+                      <ion-icon slot="icon-only" name="cart"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ng-container>
+              </div>
+
+              <div class="service-name">
+                <p class="cents"><span style="font-weight: 500;">{{item.name}}</span><br />
+                {{item.id}}</p>
+              </div>
+
+            </div>
+            <div class="status-section">
+              <div>
+                <p>FROM:</p>
+                <p>{{item.from}}</p>
+              </div>
+              <div>
+                <p>Status</p>
+                <p>{{item.status}}</p>
+              </div>
+            </div>
+            <div class="status-section">
+              <div>
+                <p>TO:</p>
+                <p>{{item.to}}</p>
+              </div>
+              <div>
+                <p>Price</p>
+                <p>KES: {{item.price}}</p>
+              </div>
+            </div>
+            <div class="view-btn">
+              <ion-button mode="ios" shape="round" expand="block" fill="outline">View Details</ion-button>
+            </div>
+          </ion-card>
+        </ion-col>
+
+      </ng-container>
+      <ng-template #loading>
+        Loading...
+      </ng-template>
+
+    </ion-row>
+  </ion-grid>
+
+
+
+</ion-content>

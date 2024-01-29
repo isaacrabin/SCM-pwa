@@ -96,12 +96,22 @@
 
     </ion-col>
     <ion-col size="6" offset="3">
-      <ion-button (click)="getCartItems()" expand="block" fill="clear"
+      <ion-button (click)="getCartItems()"  expand="block" fill="clear"
         shape="round">
         View Inventory History
       </ion-button>
 
     </ion-col>
   </ion-row>
+
+  <ng-container *ngIf="(cartItems$ | async) as items">
+    <ion-fab *ngIf="items.totalItems " (click)="viewCart()"
+      slot="fixed" horizontal="end" vertical="bottom">
+      <ion-fab-button color="tertiary">
+        <ion-icon name="cart" color="light"></ion-icon>
+      </ion-fab-button>
+      <ion-badge color="secondary">{{items.totalItems}}</ion-badge>
+    </ion-fab>
+  </ng-container>
 
 </ion-content>

@@ -27,8 +27,19 @@ const posRoutes: Routes = [
     path: 'sales/:id',
     canActivate: [AuthGuard],
     loadComponent: () => import('./view-sale/view-sale.component').then(m => m.ViewSaleComponent)
-  }
+  },
+
 ]
+
+const analyticsRoutes: Routes = [
+  {
+    path:'',
+    canActivate: [AuthGuard],
+    title: 'Home',
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
+  },
+]
+
 const dashboardRoutes: Routes = [
   {
     path: '',
@@ -51,6 +62,8 @@ const dashboardRoutes: Routes = [
     loadComponent: () => import('./view-item-dashboard/view-item-dashboard.component').then(m => m.ViewItemDashboardComponent)
   }
 ]
+
+
 
 export const routes: Routes = [
   {
@@ -80,11 +93,19 @@ export const routes: Routes = [
     loadChildren: () => import('./app.routes').then(m => posRoutes),
     title: 'Home'
   },
+
+  {
+    path: 'home',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./app.routes').then(m => analyticsRoutes),
+    title: 'Home'
+  },
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
-    title: 'Inventory Products',
+    title: 'Home',
     loadChildren: () => import('./app.routes').then(m => dashboardRoutes),
-  }
+  },
+
 ];
 

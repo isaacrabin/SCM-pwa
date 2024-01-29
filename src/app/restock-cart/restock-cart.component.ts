@@ -9,6 +9,7 @@ import { ToastService } from '../services/toast.service';
 import * as CartActions from '../shared/store/inventory/cart.actions';
 import * as CartSelectors from '../shared/store/inventory/cart.selector';
 import { CartItem } from './../shared/store/inventory/cart.model';
+import { ItemsService } from '../services/items.service';
 
 // TODO: refactor to be a reusable component
 
@@ -22,7 +23,11 @@ import { CartItem } from './../shared/store/inventory/cart.model';
 })
 export class RestockCartComponent implements OnInit {
 
-  constructor(private router: Router, private store: Store<any>) { }
+  constructor(
+    private router: Router,
+    private store: Store<any>,
+    private service: ItemsService
+    ) { }
 
   items$ = this.store.select(CartSelectors.selectCartState)
   isCheckingOut$ = this.store.select(CartSelectors.selectIsCheckingOut).pipe(

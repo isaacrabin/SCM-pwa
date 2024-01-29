@@ -82,7 +82,13 @@
       </div>
 
       <div class="delivery-options">
-        <ion-button class="ion-margin" (click)="null" expand="full" fill="solid"
+        <ion-button class="ion-margin" [disabled]="isCheckingOut$ | async"
+          (click)="checkOut()" expand="block"
+          fill="solid" shape="round">
+          {{ (isCheckingOut$ | async) ? '': 'Make Order'}}
+          <ion-spinner *ngIf="isCheckingOut$ | async" name="dots"></ion-spinner>
+        </ion-button>
+        <!-- <ion-button class="ion-margin" (click)="null" expand="full" fill="solid"
           shape="round">
           Pick Up Now
         </ion-button>
@@ -90,7 +96,7 @@
           fill="outline"
           shape="round">
           Cash On Delivery
-        </ion-button>
+        </ion-button> -->
 
         <!-- <ion-radio-group value="delivery" (ionChange)="null">
         <ion-item class="ion-margin-bottom" lines="none">
@@ -120,7 +126,7 @@
   </ng-template>
 
 </ion-content>
-
+<!--
 <ion-footer *ngIf="!!((items$ | async)?.totalItems)">
   <ion-toolbar>
     <ion-button class="ion-margin" [disabled]="isCheckingOut$ | async"
@@ -130,4 +136,4 @@
       <ion-spinner *ngIf="isCheckingOut$ | async" name="dots"></ion-spinner>
     </ion-button>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

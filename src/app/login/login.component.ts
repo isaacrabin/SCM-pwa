@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
           if (resp && resp.token) {
             sessionStorage.setItem('token', resp.token);
             this.loginForm.reset()
-            this.router.navigate(['./pos'])
+            this.router.navigate(['./home'])
           } else {
             this.toastSrv.presentToastWithOptions('Login was unsuccessful. Password and email do not match');
           }

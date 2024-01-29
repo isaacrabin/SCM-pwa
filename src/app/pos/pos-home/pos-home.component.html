@@ -6,13 +6,11 @@
         <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-item lines="none" class="search" mode="ios">
-      <ion-input type="text" placeholder="Search item"></ion-input>
-      <ion-icon size="small" slot="start" name="search-outline"></ion-icon>
-      <ion-button slot="end" (click)="null" fill="clear" color="medium">
-        <ion-icon size="small" slot="icon-only" name="filter-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
+
+    <div class="pos-header">
+      <h3>Point of Sale</h3>
+    </div>
+
     <ion-avatar slot="end">
       <jv-user-info></jv-user-info>
     </ion-avatar>
@@ -20,6 +18,14 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+
+  <ion-item lines="none" class="search" mode="ios">
+    <ion-input type="text" placeholder="Search item"></ion-input>
+    <ion-icon size="small" slot="start" name="search-outline"></ion-icon>
+    <ion-button slot="end" (click)="null" fill="clear" color="medium">
+      <ion-icon size="small" slot="icon-only" name="filter-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
 
   <ion-list-header>
     <ion-label>All Products</ion-label>

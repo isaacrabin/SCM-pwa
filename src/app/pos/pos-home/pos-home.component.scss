@@ -11,6 +11,13 @@ ion-header {
   }
 }
 
+.pos-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 ion-list-header {
   border-bottom: 1px solid #c2c2c2;
   padding-inline-start: 0px;
