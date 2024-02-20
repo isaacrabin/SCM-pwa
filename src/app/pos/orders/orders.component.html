@@ -1,0 +1,85 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title>Point of Sale</ion-title> -->
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()" color="dark">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <div class="pos-header">
+      <h3>Home</h3>
+    </div>
+
+    <ion-avatar slot="end">
+      <jv-user-info></jv-user-info>
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-list-header style="margin-left: 10px;">
+  <ion-label style="font-weight: 600;">Deliveries</ion-label>
+  <ion-buttons>
+    <ion-button color="dark" (click)="null" expand="block" fill="clear"
+      shape="round">
+      <ion-icon slot="icon-only" size="small" name="cart-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-list-header>
+
+
+<ion-grid fixed class="">
+  <ion-row>
+    <ng-container>
+      <ion-col    *ngFor="let item of orders; let i = index;" size="12" size-md="4">
+        <ion-card class="card ion-no-margin"  mode="ios" >
+          <div class="delivery-content">
+            <div class="service-icon">
+              <ng-container >
+                <ion-buttons>
+                  <ion-button size="small" color="secondary" fill="clear"                     >
+                    <ion-icon slot="icon-only" name="cart"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ng-container>
+            </div>
+
+            <div class="service-name">
+              <p class="cents"><span style="font-weight: 500;">{{item.company}}</span><br />
+              {{item.name}}</p>
+            </div>
+
+          </div>
+          <div class="status-section">
+            <div>
+              <p>Date Created:</p>
+              <p style="font-weight: 200; font-size: 12px; color: #7a7c76;">{{item.creation | date:"medium"}}</p>
+            </div>
+            <div>
+              <p>Order Type</p>
+              <p style="font-weight: 200; font-size: 12px; color: #7a7c76;">{{item.doctype}}</p>
+            </div>
+          </div>
+          <div class="status-section">
+            <div>
+              <p>Billing Status:</p>
+              <p style="font-weight: 200; font-size: 12px; color: #7a7c76;"  [ngClass]="item.billing_status === 'Fully Billed' ? 'success' : 'warning'">{{item.billing_status}}</p>
+            </div>
+            <div>
+              <p>Delivery Status</p>
+              <p style="font-weight: 200; font-size: 12px; color: #7a7c76;">{{item.delivery_status}}</p>
+            </div>
+          </div>
+          <div class="view-btn">
+            <ion-button mode="ios" shape="round" expand="block" fill="outline">View Details</ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+
+    </ng-container>
+    <ng-template #loading>
+      Loading...
+    </ng-template>
+
+  </ion-row>
+</ion-grid>

@@ -26,6 +26,10 @@ export class PosService {
     return this.http.get<Sale[]>(environment.BASE_URL + 'sales');
   }
 
+  fetchAllOrders(): Observable<Sale[]> {
+    return this.http.get<any[]>(environment.BASE_URL + 'vieworder');
+  }
+
   // fetchSaleDetails() {
   //   return this.http.get<Sale>(environment.BASE_URL + 'sales/');
   // }

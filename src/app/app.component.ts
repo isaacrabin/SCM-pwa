@@ -18,6 +18,7 @@ export class AppComponent {
     { title: 'POS', url: '/pos', icon: 'cart' },
     { title: 'Cart', url: '/pos/checkout', icon: 'cart' },
     { title: 'Sales', url: '/pos/sales', icon: 'cash' },
+    { title: 'Orders', url: '/pos/orders', icon: 'cash' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 

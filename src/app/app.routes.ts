@@ -1,3 +1,4 @@
+import { OrdersComponent } from './pos/orders/orders.component';
 import { Routes } from '@angular/router';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { AuthGuard } from './shared/guards/auth.guard';
@@ -22,6 +23,11 @@ const posRoutes: Routes = [
     path: 'sales',
     canActivate: [AuthGuard],
     loadComponent: () => import('./sales/sales.component').then(m => m.SalesComponent)
+  },
+  {
+    path: 'orders',
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pos/orders/orders.component').then(m => m.OrdersComponent)
   },
   {
     path: 'sales/:id',
