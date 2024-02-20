@@ -67,7 +67,7 @@
             </div>
             <div>
               <p>Delivery Status</p>
-              <p style="font-weight: 200; font-size: 12px; color: #7a7c76;">{{item.delivery_status}}</p>
+              <p style="font-weight: 200; font-size: 12px; color: #7a7c76;"  [ngClass]="item.delivery_status === 'Fully Delivered' ? 'success' : 'warning'">{{item.delivery_status}}</p>
             </div>
           </div>
           <div class="view-btn">
