@@ -76,10 +76,22 @@
         </ion-card>
       </ion-col>
 
+
+      <div class="skeleton" *ngIf="orders.length < 1">
+        <ion-label>
+          <h2>
+            <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
+          </h2>
+          <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+        </ion-label>
+      </div>
+
+
     </ng-container>
     <ng-template #loading>
       Loading...
     </ng-template>
+
 
   </ion-row>
 </ion-grid>
