@@ -1,14 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { PosProduct } from '../shared/interfaces/get-pos-products';
+import { CommonModule } from '@angular/common';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 
 @Component({
   standalone: true,
   selector: 'app-view-item-pos',
   templateUrl: './view-item-pos.component.html',
   styleUrls: ['./view-item-pos.component.scss'],
-  imports: [IonicModule]
+  imports: [IonicModule,CommonModule,RouterLink,RouterModule]
 })
 export class ViewItemPosComponent implements OnInit {
 
@@ -24,7 +26,7 @@ export class ViewItemPosComponent implements OnInit {
     this.fetchOrPassed(id);
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
@@ -44,5 +46,14 @@ export class ViewItemPosComponent implements OnInit {
     console.log('have to make http call',);
   }
 
+  async onAddtoCart(){
+   const modal = await  this.modalCtrl.create({
+      component: AddToCartComponent,
+      breakpoints:[0.4, 0.4],
+      initialBreakpoint:0.4,
+      componentProps:{}
+    })
+    modal.present();
+  }
 
 }
