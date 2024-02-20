@@ -25,6 +25,6 @@ export class BarcodeScannerComponent implements AfterViewInit {
   }
 
   onStarted(started: any) {
-    console.log(started);
+
   }
 }

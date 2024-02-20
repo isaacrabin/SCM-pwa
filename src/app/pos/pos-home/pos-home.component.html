@@ -48,11 +48,14 @@
       <ng-container
         *ngIf="(itemsWithQuantity$ | async) as items;else loading">
         <ion-col *ngFor="let item of items" size="6" size-md="4">
-          <ion-card class="card ion-no-margin" (click)="onCardClick(item)">
+          <ion-card class="card ion-no-margin" (click)="onCardClick(item)" [ngClass]="item.level < 1 ? 'grayscale' : ''">
             <div class="image-container">
               <img [alt]="item.name" #img
                 [src]=" item.item_image ?? './assets/images/no-image.svg'"
                 (error)="img.src = './assets/images/no-image.svg'" />
+                <div class="overlay" *ngIf="item.level < 1">
+                  Out of Stock
+              </div>
             </div>
             <div class="card-content">
               <div class="buttons">
@@ -60,6 +63,7 @@
                 <ng-container *ngIf="item.quantityInCart > 0">
                   <ion-buttons>
                     <ion-button
+
                       *ngIf="item.quantityInCart === 1; else reduceItems"
                       slot="start"
                       (click)="removeFromCart(item); $event.stopPropagation()"

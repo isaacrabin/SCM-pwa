@@ -46,8 +46,7 @@ export class DashboardItemComponent implements OnInit {
           },
           handler: () => {
           this.viewItem(this.item);
-            // console.log('Delete clicked',this.item);
-            // Implement your "Delete" logic here
+            //             // Implement your "Delete" logic here
           },
         },
         {
@@ -59,8 +58,7 @@ export class DashboardItemComponent implements OnInit {
           handler: () => {
             this.openModal(this.item.name);            // this.more.emit();
 
-            console.log('Delete clicked');
-            // Implement your "Delete" logic here
+                        // Implement your "Delete" logic here
           },
         },
         // {

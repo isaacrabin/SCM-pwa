@@ -49,8 +49,9 @@ export const PosCartReducer = createReducer(
     const itemIndex = state.items.findIndex(item => item.item_id === itemId);
     let updatedItems = [...state.items]; // create a copy
 
+
     if (itemIndex > -1) {
-      const currentItem = state.items[itemIndex];
+      const currentItem = {...state.items[itemIndex]};
       if (currentItem.quantity > 1) {
         // Decrement the quantity
         const updatedItem: PosCartItem = {

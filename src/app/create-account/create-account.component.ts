@@ -98,8 +98,6 @@ export class CreateAccountComponent implements OnInit {
   }
 
   submit() {
-    console.log('form: ', this.registerForm);
-    console.log(this.registerForm.value);
     this.registerForm.markAllAsTouched();
 
     if (this.registerForm.valid) {

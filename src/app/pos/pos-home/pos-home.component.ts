@@ -1,9 +1,9 @@
-import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, CommonModule, JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule, MenuController, ModalController, PopoverController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest, map, switchMap } from 'rxjs';
+import { Observable,  combineLatest, map, switchMap } from 'rxjs';
 import { BarcodeScannerComponent } from 'src/app/barcode-scanner/barcode-scanner.component';
 import { ItemsService } from 'src/app/services/items.service';
 import { PosService } from 'src/app/services/pos.service';
@@ -14,6 +14,8 @@ import * as PosCartActions from '../../shared/store/pos/pos-cart.actions';
 import * as PosCartSelectors from '../../shared/store/pos/pos-cart.selector';
 import { UserInfoComponent } from 'src/app/shared/components/user-info/user-info.component';
 import { SelectPopoverComponent } from '../select-popover/select-popover.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastService } from 'src/app/services/toast.service';
 
 
 @Component({
@@ -21,7 +23,7 @@ import { SelectPopoverComponent } from '../select-popover/select-popover.compone
   selector: 'app-pos-home',
   templateUrl: './pos-home.component.html',
   styleUrls: ['./pos-home.component.scss'],
-  imports: [IonicModule, NgFor, AsyncPipe, NgIf, JsonPipe, UserInfoComponent]
+  imports: [IonicModule, NgFor, AsyncPipe, NgIf, JsonPipe, UserInfoComponent,CommonModule, FormsModule,ReactiveFormsModule]
 })
 export class PosHomeComponent implements OnInit {
 
@@ -61,6 +63,7 @@ export class PosHomeComponent implements OnInit {
     private getItemsService: ItemsService,
     private posService: PosService,
     private menuCtrl: MenuController,
+    private toast: ToastService,
     private popoverController: PopoverController,
     private store: Store<AppState>
   ) { }
@@ -112,15 +115,19 @@ export class PosHomeComponent implements OnInit {
       price: item.price,
       item_image: item.item_image
     }
+    if(item.level < 1){
+      this.toast.presentToastWithOptions('Item is out of stock');
+      return;
+    }
     this.store.dispatch(PosCartActions.addItem({ item: cartItem }))
   }
 
   reduceFromCart(item: PosProduct) {
-    this.store.dispatch(PosCartActions.reduceItem({ itemId: item.item_id }))
+    this.store.dispatch(PosCartActions.reduceItem({ itemId: item.name }))
   }
 
   removeFromCart(item: PosProduct) {
-    this.store.dispatch(PosCartActions.removeItem({ itemId: item.item_id }))
+    this.store.dispatch(PosCartActions.removeItem({ itemId: item.name }))
   }
 
   viewCart() {
