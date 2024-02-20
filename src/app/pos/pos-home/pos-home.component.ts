@@ -1,7 +1,7 @@
 import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonicModule, MenuController, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController, PopoverController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, map, switchMap } from 'rxjs';
 import { BarcodeScannerComponent } from 'src/app/barcode-scanner/barcode-scanner.component';
@@ -13,6 +13,7 @@ import { PosCartItem } from 'src/app/shared/store/pos/pos-cart.model';
 import * as PosCartActions from '../../shared/store/pos/pos-cart.actions';
 import * as PosCartSelectors from '../../shared/store/pos/pos-cart.selector';
 import { UserInfoComponent } from 'src/app/shared/components/user-info/user-info.component';
+import { SelectPopoverComponent } from '../select-popover/select-popover.component';
 
 
 @Component({
@@ -60,11 +61,35 @@ export class PosHomeComponent implements OnInit {
     private getItemsService: ItemsService,
     private posService: PosService,
     private menuCtrl: MenuController,
+    private popoverController: PopoverController,
     private store: Store<AppState>
   ) { }
 
   ngOnInit() {
   }
+
+  async openPopOver(ev: any) {
+    const popover = await this.popoverController.create({
+      component: SelectPopoverComponent,
+      event: ev,
+      translucent: false,
+      componentProps: {
+        title: "Bank Account",
+        items: [{icon: 'cart', name: 'Bank Account'},{icon: 'cart', name: 'Bank Account'}],
+      }
+    });
+
+     await popover.present();
+
+     // Listen for onDidDismiss
+     const { data } = await popover.onDidDismiss();
+
+     if (data !== null) {
+      //  this.form.patchValue({ bank: data?.selectedItem });
+      //  this.dataReturned = data?.selectedItem;
+      //  this.memo = this?.dataReturned + "/" + this.memo;
+     }
+   }
 
   onCardClick(item: PosProduct) {
     this.router.navigateByUrl(`/pos/item/${item.item_name}`, {
@@ -81,7 +106,7 @@ export class PosHomeComponent implements OnInit {
 
   addToCart(item: PosProduct) {
     const cartItem: PosCartItem = {
-      item_id: item.item_id,
+      item_id: item.name,
       item_name: item.item_name,
       quantity: 1,
       price: item.price,

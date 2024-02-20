@@ -1,0 +1,12 @@
+<ion-toolbar>
+  <ion-searchbar animated="true" mode="ios"></ion-searchbar>
+</ion-toolbar>
+
+<ion-list>
+  <ion-item class="ion-border" *ngFor="let item of items" (click)="selectItem(item)" tappable>
+      <ion-avatar slot="start">
+          <img [src]="item?.icon" />
+      </ion-avatar>
+      <ion-label> {{ item?.name }}</ion-label>
+  </ion-item>
+</ion-list>
